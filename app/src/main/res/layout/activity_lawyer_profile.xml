@@ -19,67 +19,76 @@
             android:layout_centerInParent="true"
             android:src="@drawable/lawyer" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/signout_button"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/profile_layout"
+        android:layout_above="@id/client_staff_background">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/name_text"/>
+
+
+
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/profile_layout"
-        android:id="@+id/text_layout"
-        android:background="@color/colorPrimaryDark">
+        android:id="@+id/client_staff_background"
+        android:layout_alignParentBottom="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="Clients"
                 android:layout_weight="1"
-                android:textSize="15sp"
-                android:background="@drawable/text_bg"
-                android:id="@+id/clients_text"
+                android:textSize="20sp"
                 android:gravity="center"
-                android:textColor="@color/white"
-                android:text="Clients"/>
+                android:background="@drawable/client_staff_bg"
+                android:textColor="@color/white"/>
 
             <TextView
-                android:id="@+id/staff_text"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/text_bg"
-                android:gravity="center"
                 android:text="Staff"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/text_bg"
-                android:textSize="15sp"
-                android:id="@+id/profile_text"
+                android:textSize="20sp"
                 android:gravity="center"
-                android:textColor="@color/white"
-                android:text="Profile"/>
+                android:background="@drawable/client_staff_bg"
+                android:textColor="@color/white"/>
+
+
+
 
         </LinearLayout>
 
 
+
+
+
+
+
+
+
     </RelativeLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_container"
-        android:layout_below="@id/text_layout">
-
-
-
-
-    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>

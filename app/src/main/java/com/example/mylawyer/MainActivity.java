@@ -1,21 +1,20 @@
 package com.example.mylawyer;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
-//    ProgressDialog progressDialog;
     private Button lawyer_continue,client_continue;
     private long backpressedtime;
     private Toast backtoast;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         lawyer_continue = (Button)findViewById(R.id.lawyer_continue_button);
         client_continue = (Button)findViewById(R.id.client_continue_button);
+        mAuth = FirebaseAuth.getInstance();
 
         lawyer_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        if(mAuth.getCurrentUser()!=null){
+            //Stay on home page of the app
+            finish();
+            startActivity(new Intent(getApplicationContext(),LawyerProfile.class));
+        }
 
 //        progressDialog = new ProgressDialog(this);
 //        progressDialog.setTitle("Loading...");
