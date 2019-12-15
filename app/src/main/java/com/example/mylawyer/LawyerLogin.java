@@ -96,7 +96,7 @@ public class LawyerLogin extends AppCompatActivity {
         }
 
         progressDialog.setTitle("Logging in");
-        progressDialog.setMessage("It will take a moment");
+        progressDialog.setMessage("It will take a moment...");
         progressDialog.show();
 
         mAuth.signInWithEmailAndPassword(email,password)
@@ -117,5 +117,8 @@ public class LawyerLogin extends AppCompatActivity {
                         }
                     }
                 });
+
     }
+
 }
+

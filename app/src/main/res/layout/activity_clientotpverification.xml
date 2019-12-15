@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Clientotpverification"
+    android:background="@color/colorPrimaryDark">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/client_otp_verify_toolbar"
+        android:theme="@style/ToolBarStyle"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@drawable/layout_background">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/client_otp_verify_toolbar"
+        android:layout_marginTop="20dp"
+        android:id="@+id/header_text"
+        android:text="OTP has been sent"
+        android:textSize="20dp"
+        android:textColor="@color/white"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/header_text"
+        android:id="@+id/text_input_layout"
+        android:background="@drawable/otp_text_bg"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:textSize="23sp"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:hint="Verification Code"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:id="@+id/otp_edittext"
+            android:fontFamily="monospace"
+            android:inputType="number"
+            android:textStyle="bold"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:elevation="20dp"
+        android:text="Verify"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/verify_button"/>
+
+</RelativeLayout>

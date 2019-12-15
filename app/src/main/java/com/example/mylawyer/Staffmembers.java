@@ -1,16 +1,16 @@
 package com.example.mylawyer;
 
-public class User {
+public class Staffmembers {
 
-    public String name,email,phone;
+    String name,post,phone;
 
-    public User(){
+    public Staffmembers(){
 
     }
 
-    public User(String name, String email, String phone) {
+    public Staffmembers(String name, String post, String phone) {
         this.name = name;
-        this.email = email;
+        this.post = post;
         this.phone = phone;
     }
 
@@ -22,12 +22,12 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPost() {
+        return post;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPost(String post) {
+        this.post = post;
     }
 
     public String getPhone() {
@@ -37,4 +37,5 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

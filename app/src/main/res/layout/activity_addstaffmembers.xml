@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Addstaffmembers">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/add_members_toolbar"
+        android:theme="@style/ToolBarStyle"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@drawable/layout_background">
+
+    </androidx.appcompat.widget.Toolbar>
+
+<!--    <ProgressBar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--        android:layout_below="@id/add_members_toolbar"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/add_members_toolbar"
+        android:layout_marginTop="40dp"
+        android:id="@+id/fullname_layout">
+
+        <EditText
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:id="@+id/add_member_name"
+            android:hint="Full Name"
+            android:layout_below="@id/add_members_toolbar"
+            android:drawableLeft="@drawable/name_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:paddingRight="10dp"/>
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--    <ImageView-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:id="@+id/member_image"-->
+<!--        android:layout_below="@id/fullname_layout"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="20dp"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/member_image"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="Upload Photo"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:background="@drawable/button_background_no_round"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:padding="5dp"-->
+<!--        android:elevation="10dp"-->
+<!--        android:id="@+id/upload_photo_button"/>-->
+
+    <Spinner
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/staff_member_post_spinner"
+        android:layout_below="@id/fullname_layout"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/staff_member_post_spinner"
+        android:id="@+id/phone_number_layout">
+
+        <EditText
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:id="@+id/member_phone"
+            android:hint="Phone Number"
+            android:drawableLeft="@drawable/phone_icon"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="10dp"
+            android:layout_below="@id/staff_member_post_spinner"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background_no_round"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Add Member"
+        android:id="@+id/addmemberbutton"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+
+
+
+
+
+
+</RelativeLayout>

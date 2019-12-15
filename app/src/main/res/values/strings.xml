@@ -1,6 +1,19 @@
 <resources>
+    <array name="posts">
+
+        <item>Select a post</item>
+
+        <item>Junior Lawyer</item>
+
+        <item>Sub Junior Lawyer</item>
+
+        <item>Trainee</item>
+
+        <item>Secretary</item>
+
+    </array>
+
     <string name="app_name">My Lawyer</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

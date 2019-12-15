@@ -7,88 +7,128 @@
     android:layout_height="match_parent"
     tools:context=".LawyerProfile">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/profile_layout"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/lawyer_profile_toolbar"
+        android:theme="@style/ToolBarStyle"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:background="@drawable/layout_background">
 
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/lawyer" />
 
-        <Button
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lawyer_profile_toolbar"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/name_layout">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Out"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/signout_button"/>
+            android:textSize="20sp"
+            android:text="Name: "
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/name_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/profile_name"
+            android:layout_toRightOf="@id/name_text"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_layout"
+        android:id="@+id/email_layout"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Email: "
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/email_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/profile_email"
+            android:layout_toRightOf="@id/email_text" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_layout"
+        android:id="@+id/phone_layout"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Name: "
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/phone_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/profile_phone"
+            android:layout_toRightOf="@id/phone_text"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/profile_layout"
-        android:layout_above="@id/client_staff_background">
+        android:layout_below="@id/phone_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_background">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:id="@+id/name_text"/>
-
-
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/client_staff_background"
-        android:layout_alignParentBottom="true">
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="Your Clients"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:id="@+id/clients_text"
+            android:background="@color/colorPrimaryDark"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Clients"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:background="@drawable/client_staff_bg"
-                android:textColor="@color/white"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/clients_text"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/client_info_recycler_view"
+            android:padding="10dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Staff"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:background="@drawable/client_staff_bg"
-                android:textColor="@color/white"/>
-
-
-
-
-        </LinearLayout>
-
-
-
-
-
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 
 
     </RelativeLayout>
+
+
 
 
 </RelativeLayout>

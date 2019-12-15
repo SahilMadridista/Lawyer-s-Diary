@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Addclient">
+
+    <androidx.appcompat.widget.Toolbar
+
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/add_client_toolbar"
+        android:theme="@style/ToolBarStyle"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@drawable/layout_background">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your Client Details"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/add_client_toolbar"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp"
+        android:id="@+id/header_text"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/header_text"
+        android:id="@+id/client_name_layout"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:inputType="textCapWords"
+            android:id="@+id/client_name_edit_text"
+            android:hint="Client Name"
+            android:drawableLeft="@drawable/name_icon"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:paddingRight="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/client_name_layout"
+        android:id="@+id/client_case_about_layout"
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:inputType="text"
+            android:id="@+id/case_about_edit_text"
+            android:hint="Case About"
+            android:drawableLeft="@drawable/description_icon"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:paddingRight="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:layout_below="@id/client_case_about_layout"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/date_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:id="@+id/date_text_view"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAlignment="center"/>
+
+
+    </RelativeLayout>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/date_layout"
+        android:background="@drawable/button_background_no_round"
+        android:text="Choose Case Starting Date"
+        android:padding="15dp"
+        android:elevation="20dp"
+        android:id="@+id/choose_date_button"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:textAllCaps="false"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/choose_date_button"
+        android:id="@+id/client_phone_layout"
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:inputType="phone"
+            android:id="@+id/phone_edit_text"
+            android:hint="Phone Number"
+            android:drawableLeft="@drawable/phone_icon"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:paddingRight="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_background_no_round"
+        android:text="Add Client"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:id="@+id/add_client_button"/>
+
+</RelativeLayout>
