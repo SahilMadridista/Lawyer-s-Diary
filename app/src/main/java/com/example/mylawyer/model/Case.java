@@ -12,5 +12,6 @@ public class Case {
     public String clientAadhar;
     public String caseDescription;
     public Timestamp startTime;
+    public String caseId;
 
 }

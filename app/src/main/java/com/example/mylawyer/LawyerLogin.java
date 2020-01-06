@@ -108,7 +108,7 @@ public class LawyerLogin extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(),LawyerProfile.class));
+                            startActivity(new Intent(getApplicationContext(), LawyerProfileActivity.class));
                             Toast.makeText(LawyerLogin.this,"You are Logged in",Toast.LENGTH_SHORT)
                                     .show();
                         } else{

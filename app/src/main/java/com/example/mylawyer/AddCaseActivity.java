@@ -1,9 +1,5 @@
 package com.example.mylawyer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -14,9 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
 import com.example.mylawyer.model.Case;
-import com.example.mylawyer.model.Lawyer;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,8 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddCaseActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -171,6 +166,8 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
 //            }
 //        });
 
+        clientCase.caseId = ref.getId();
+
         ref.set(clientCase)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -209,48 +206,5 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
         date_text.setText(currentDateString);
 
     }
-
-
-//    private void testFirestore() {
-//
-////        Lawyer lawyer = new Lawyer();
-////        lawyer.setName("Sahil");
-////        ArrayList<String> cases = new ArrayList<>();
-////        cases.add("Case1");
-////        cases.add("Case2");
-////        lawyer.setClientsCasesList(cases);
-////
-////        int id = lawyer.hashCode();
-//
-////        Lawyer courtCase = new Lawyer();
-////
-////        String userID = mAuth.getCurrentUser().getUid();
-//
-////        courtCase.clientName = "Sahil";
-////        courtCase.clientId = "654245647";
-////        courtCase.lawyerName = "Someone";
-//
-//        int caseId = courtCase.hashCode();
-//
-//        courtCase.clientsCasesList = new ArrayList<String>();
-//        courtCase.clientsCasesList.add(caseId);
-//
-////        firestore.collection("Lawyers").document(userID).add(courtCase)
-////                .addOnSuccessListener(new OnSuccessListener<Void>() {
-////                    @Override
-////                    public void onSuccess(Void aVoid) {
-////                        Toast.makeText(AddCaseActivity.this, "Stored", Toast.LENGTH_LONG).show();
-////
-////                    }
-////                });
-//
-//        firestore.collection("Lawyers").document(userID).set(courtCase)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void aVoid) {
-//                Toast.makeText(AddCaseActivity.this, "Stored", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
 
 }

@@ -10,26 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CourtScenes"
-            android:parentActivityName=".LawyerProfile"></activity>
+            android:parentActivityName=".LawyerProfileActivity"></activity>
         <activity android:name=".CaseHistory"
-            android:parentActivityName=".LawyerProfile"></activity>
+            android:parentActivityName=".LawyerProfileActivity"></activity>
         <activity android:name=".Clienthomepage" />
         <activity
             android:name=".Clientotpverification"
             android:parentActivityName=".ClientSignup" />
         <activity
             android:name=".AddCaseActivity"
-            android:parentActivityName=".LawyerProfile" />
+            android:parentActivityName=".LawyerProfileActivity" />
         <activity
             android:name=".Addstaffmembers"
-            android:parentActivityName=".LawyerProfile" />
+            android:parentActivityName=".LawyerProfileActivity" />
         <activity
             android:name=".StaffInformation"
-            android:parentActivityName=".LawyerProfile" />
+            android:parentActivityName=".LawyerProfileActivity" />
         <activity
             android:name=".ClientSignup"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".LawyerProfile" />
+        <activity android:name=".LawyerProfileActivity" />
         <activity
             android:name=".LawyerLogin"
             android:parentActivityName=".LawyerSignUp" />

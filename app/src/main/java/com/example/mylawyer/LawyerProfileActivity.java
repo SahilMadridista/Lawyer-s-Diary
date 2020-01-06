@@ -1,12 +1,5 @@
 package com.example.mylawyer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,15 +9,23 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mylawyer.interfaces.CasesModifier;
 import com.example.mylawyer.model.Case;
 import com.example.mylawyer.model.Lawyer;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,7 +37,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-public class LawyerProfile extends AppCompatActivity {
+public class LawyerProfileActivity extends AppCompatActivity implements CasesModifier {
 
     private static final String TAG = "ViewDetails";
 
@@ -52,6 +53,7 @@ public class LawyerProfile extends AppCompatActivity {
     CaseRecyclerViewAdapter adapter;
     ArrayList<Clientmembers> clientmembersArrayList  = new ArrayList<>();
     androidx.appcompat.widget.Toolbar lawyer_profile_toolbar;
+    private ArrayList<Case> casesInformationList;
 
 
     // Starting of OnCreate
@@ -132,45 +134,6 @@ public class LawyerProfile extends AppCompatActivity {
 
     // End of OnCreate
 
-//    public void showData() {
-//
-//        if(casesArrayList.size()>0)
-//            casesArrayList.clear();
-//
-//        firestore.collection("Lawyers").document(userID).collection("Clients")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//
-//                        for(QueryDocumentSnapshot querySnapshot : task.getResult()){
-//
-//                            Clientmembers clientmembers = new Clientmembers(querySnapshot.getId()
-//                                    ,querySnapshot.getString("Name"),
-//                                    querySnapshot.getString("Case About")
-//                                    ,querySnapshot.getString("Phone")
-//                                    ,querySnapshot.getString("Date")
-//                                    ,querySnapshot.getString("Aadhar"));
-//
-//                            casesArrayList.add(clientmembers);
-//
-//                        }
-//
-//                        adapter = new CaseRecyclerViewAdapter(LawyerProfile.this,casesArrayList);
-//                        clientInfoRecyclerView.setAdapter(adapter);
-//
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//
-//                Toast.makeText(LawyerProfile.this,"Failed",Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//    }
-
     public void showData() {
 
         firestore.collection("Lawyers").document(userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -178,10 +141,10 @@ public class LawyerProfile extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 final Lawyer lawyer = documentSnapshot.toObject(Lawyer.class);
 
-                final MutableLiveData<ArrayList<Case>> casesInformationList = new MutableLiveData<>();
-                casesInformationList.setValue(new ArrayList<Case>());
+                casesInformationList = new ArrayList<>();
 
-                final CaseRecyclerViewAdapter adapter = new CaseRecyclerViewAdapter(LawyerProfile.this, casesInformationList.getValue());
+                adapter = new CaseRecyclerViewAdapter(
+                        LawyerProfileActivity.this, casesInformationList, LawyerProfileActivity.this);
                 clientInfoRecyclerView.setAdapter(adapter);
 
                 for (String caseId : lawyer.clientsCasesList) {
@@ -190,25 +153,49 @@ public class LawyerProfile extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     synchronized (casesInformationList) {
-                                        casesInformationList.getValue().add(documentSnapshot.toObject(Case.class));
-                                        adapter.notifyItemInserted(casesInformationList.getValue().size()-1);
+                                        casesInformationList.add(documentSnapshot.toObject(Case.class));
+                                        adapter.notifyItemInserted(casesInformationList.size()-1);
                                     }
                                 }
                             }
                     );
                 }
-
-                casesInformationList.observe(LawyerProfile.this, new Observer<ArrayList<Case>>() {
-                    @Override
-                    public void onChanged(ArrayList<Case> cases) {
-                        if (cases.size() == lawyer.clientsCasesList.size()) {
-
-                        }
-                    }
-                });
-
             }
         });
+    }
+
+    @Override
+    public void addDetails(String clientName, Timestamp startTime) {
+        Intent adddetailsactivityintent = new Intent(this, CourtScenes.class);
+
+        adddetailsactivityintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        adddetailsactivityintent.putExtra("Client Name", clientName);
+        adddetailsactivityintent.putExtra("Start Date", startTime);
+
+        startActivity(adddetailsactivityintent);
+
+    }
+
+    @Override
+    public void deleteSelectedCase(final String caseId) {
+        firestore.collection("Cases").document(caseId).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        firestore.collection("Lawyers").document(userID)
+                                .update("clientsCasesList", FieldValue.arrayRemove(caseId))
+                                .addOnSuccessListener(
+                                        new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(LawyerProfileActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                                casesInformationList.remove(getCaseIndex(casesInformationList, caseId));
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                );
+                    }
+                });
     }
 
     // Start - Top 3 dots menu bar
@@ -226,7 +213,7 @@ public class LawyerProfile extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.notifications:
-                Toast.makeText(LawyerProfile.this,"Notification Activity to be added if needed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LawyerProfileActivity.this,"Notification Activity to be added if needed",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.share_unique_id:
@@ -253,7 +240,7 @@ public class LawyerProfile extends AppCompatActivity {
 
             case R.id.sign_out:
                 mAuth.signOut();
-                startActivity(new Intent(LawyerProfile.this,MainActivity.class));
+                startActivity(new Intent(LawyerProfileActivity.this,MainActivity.class));
 
         }
 
@@ -290,4 +277,15 @@ public class LawyerProfile extends AppCompatActivity {
 
     // End - Back pressed function
 
+
+    private int getCaseIndex(ArrayList<Case> cases, String caseId) {
+
+        for (int i = 0; i < cases.size(); i++) {
+            if (cases.get(i).caseId.equals(caseId)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }

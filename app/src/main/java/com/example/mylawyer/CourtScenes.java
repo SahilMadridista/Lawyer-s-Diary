@@ -1,8 +1,5 @@
 package com.example.mylawyer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -129,7 +129,7 @@ public class CourtScenes extends AppCompatActivity{
             public void onSuccess(DocumentReference documentReference) {
 
                 Toast.makeText(CourtScenes.this,"Information Added",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CourtScenes.this,LawyerProfile.class));
+                startActivity(new Intent(CourtScenes.this, LawyerProfileActivity.class));
 
             }
         }).addOnFailureListener(new OnFailureListener() {

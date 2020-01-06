@@ -5,10 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -18,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +25,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LawyerSignUp extends AppCompatActivity {
 
@@ -107,7 +99,7 @@ public class LawyerSignUp extends AppCompatActivity {
 
         if(mAuth.getCurrentUser()!= null){
             finish();
-            startActivity(new Intent(getApplicationContext(),LawyerProfile.class));
+            startActivity(new Intent(getApplicationContext(), LawyerProfileActivity.class));
         }
     }
 
@@ -196,7 +188,7 @@ public class LawyerSignUp extends AppCompatActivity {
                             lawyer.lawyerAadhar = aadhar;
                             lawyer.lowerCaseName = name.toLowerCase();
 
-                            startActivity(new Intent(LawyerSignUp.this,LawyerProfile.class));
+                            startActivity(new Intent(LawyerSignUp.this, LawyerProfileActivity.class));
                             documentReference.set(lawyer).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
