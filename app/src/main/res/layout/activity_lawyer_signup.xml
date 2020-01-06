@@ -8,6 +8,7 @@
     tools:context=".LawyerSignUp">
 
     <androidx.appcompat.widget.Toolbar
+
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/lawyer_signup_toolbar"
@@ -23,32 +24,11 @@
         android:text="Details of the Lawyer"
         android:layout_below="@id/lawyer_signup_toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:textSize="17dp"
-        android:id="@+id/header_text"
-        android:textColor="@color/red"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/header_text"/>
 
-<!--    <ImageView-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:id="@+id/lawyer_signup_image"-->
-<!--        android:layout_below="@id/header_text"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="10dp"/>-->
-
-<!--    <Button-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/lawyer_signup_image"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:text="Upload Photo"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:background="@drawable/button_background_no_round"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:padding="5dp"-->
-<!--        android:elevation="10dp"-->
-<!--        android:id="@+id/upload_lawyer_photo_button"/>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
@@ -60,7 +40,8 @@
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
             android:inputType="textCapWords"
             android:id="@+id/name_edit_text"
             android:hint="Full Name"
@@ -78,11 +59,12 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_name_layout"
         android:id="@+id/laywer_phone_layout"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="3dp">
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
             android:inputType="phone"
             android:id="@+id/phone_edit_text"
             android:hint="Phone Number"
@@ -102,11 +84,12 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_phone_layout"
         android:id="@+id/laywer_email_layout"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="3dp">
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
             android:inputType="textEmailAddress"
             android:hint="Email address"
             android:id="@+id/email_edit_text"
@@ -126,11 +109,12 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_email_layout"
         android:id="@+id/laywer_password_layout"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="3dp">
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
             android:inputType="textPassword"
             android:hint="Password"
             android:id="@+id/password_edit_text"
@@ -140,6 +124,28 @@
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"/>
 
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/laywer_password_layout"
+        android:id="@+id/lawyer_aadhar_number_layout">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:id="@+id/lawyer_aadhar"
+            android:hint="Aadhar Number"
+            android:drawableLeft="@drawable/aadhar_icon"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="10dp"
+            android:textSize="13sp"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,13 +154,13 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/laywer_password_layout"
+        android:layout_below="@id/lawyer_aadhar_number_layout"
         android:text="Show Password"
         android:textStyle="bold"
         android:id="@+id/registercheckbox"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:textColor="@color/red"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -165,7 +171,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Have an account ? CLick to Log in"
+            android:text="Have an account ? Click to Log in"
             android:textColor="@color/colorPrimaryDark"
             android:layout_centerInParent="true"
             android:textStyle="bold"

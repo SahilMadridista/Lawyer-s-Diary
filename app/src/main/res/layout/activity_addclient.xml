@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Addclient">
+    tools:context=".AddCaseActivity">
 
     <androidx.appcompat.widget.Toolbar
 
@@ -19,31 +19,22 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter your Client Details"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/add_client_toolbar"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="15dp"
-        android:id="@+id/header_text"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/header_text"
+        android:layout_below="@id/add_client_toolbar"
         android:id="@+id/client_name_layout"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:inputType="textCapWords"
             android:id="@+id/client_name_edit_text"
-            android:hint="Client Name"
+            android:hint="Client Full Name"
+            android:textSize="13sp"
             android:drawableLeft="@drawable/name_icon"
             android:layout_centerHorizontal="true"
             android:paddingLeft="10dp"
@@ -57,16 +48,16 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/client_name_layout"
-        android:id="@+id/client_case_about_layout"
-        android:layout_marginTop="15dp">
+        android:id="@+id/client_phone_layout">
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:inputType="text"
-            android:id="@+id/case_about_edit_text"
-            android:hint="Case About"
-            android:drawableLeft="@drawable/description_icon"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:textSize="13sp"
+            android:id="@+id/client_phone_edit_text"
+            android:hint="Phone Number"
+            android:drawableLeft="@drawable/phone_icon"
             android:layout_centerHorizontal="true"
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"
@@ -74,12 +65,72 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <RelativeLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/client_phone_layout"
+        android:id="@+id/client_aadhar_number_layout">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:id="@+id/client_aadhar_number"
+            android:hint="Aadhar Number"
+            android:drawableLeft="@drawable/aadhar_icon"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="10dp"
+            android:textSize="13sp"
+            android:layout_below="@id/staff_member_post_spinner"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@id/client_name_layout"-->
+<!--        android:id="@+id/client_case_about_layout"-->
+<!--        android:layout_marginTop="15dp">-->
+
+<!--        <EditText-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:inputType="text"-->
+<!--            android:id="@+id/case_about_edit_text"-->
+<!--            android:hint="Case About"-->
+<!--            android:drawableLeft="@drawable/description_icon"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:drawablePadding="10dp"-->
+<!--            android:paddingRight="10dp"/>-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <EditText
         android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_background"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/client_case_about_edittext"
+        android:layout_below="@id/client_aadhar_number_layout"
+        android:hint="Case Description"
+        android:singleLine="false"
+        android:textSize="13dp"
+        android:gravity="start"
+        android:padding="5dp"
+        android:lines="7"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background"
-        android:layout_below="@id/client_case_about_layout"
+        android:layout_below="@id/client_case_about_edittext"
         android:layout_centerHorizontal="true"
         android:id="@+id/date_layout">
 
@@ -88,6 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
+            android:textSize="13sp"
             android:id="@+id/date_text_view"
             android:textColor="@color/colorPrimaryDark"
             android:textAlignment="center"/>
@@ -111,27 +163,7 @@
         android:layout_marginTop="15dp"
         android:textAllCaps="false"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/choose_date_button"
-        android:id="@+id/client_phone_layout"
-        android:layout_marginTop="15dp">
 
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:inputType="phone"
-            android:id="@+id/phone_edit_text"
-            android:hint="Phone Number"
-            android:drawableLeft="@drawable/phone_icon"
-            android:layout_centerHorizontal="true"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"
-            android:paddingRight="10dp"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"

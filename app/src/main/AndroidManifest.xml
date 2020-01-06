@@ -9,12 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Clienthomepage"></activity>
+        <activity android:name=".CourtScenes"
+            android:parentActivityName=".LawyerProfile"></activity>
+        <activity android:name=".CaseHistory"
+            android:parentActivityName=".LawyerProfile"></activity>
+        <activity android:name=".Clienthomepage" />
         <activity
             android:name=".Clientotpverification"
             android:parentActivityName=".ClientSignup" />
         <activity
-            android:name=".Addclient"
+            android:name=".AddCaseActivity"
             android:parentActivityName=".LawyerProfile" />
         <activity
             android:name=".Addstaffmembers"

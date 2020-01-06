@@ -1,10 +1,11 @@
 package com.example.mylawyer;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -20,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mylawyer.model.Lawyer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +30,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,14 +38,14 @@ public class LawyerSignUp extends AppCompatActivity {
 
     androidx.appcompat.widget.Toolbar toolbar_lawyer_signup;
     private CheckBox registercheckbox;
-    private EditText registername,registeremail,registerphone,registerpassword;
+    private EditText registername,registeremail,registerphone,registerpassword,registeraadhar;
     private Button signupbutton;
     private FirebaseAuth mAuth;
     private TextView login_text;
     private ProgressDialog progressDialog;
     FirebaseFirestore firestore;
-    String userID;
-    ArrayList<Integer> clientid = new ArrayList<>();
+    String LawyeruserID;
+//    ArrayList<Integer> clientid = new ArrayList<>();
 //    static int n;
 //    private static final int PICK_IMAGE=1;
 //    Uri imageUri;
@@ -58,6 +60,7 @@ public class LawyerSignUp extends AppCompatActivity {
         registeremail = (EditText)findViewById(R.id.email_edit_text);
         registerphone = (EditText)findViewById(R.id.phone_edit_text);
         registerpassword = (EditText)findViewById(R.id.password_edit_text);
+        registeraadhar = (EditText)findViewById(R.id.lawyer_aadhar);
         signupbutton = (Button)findViewById(R.id.sign_up_button);
         login_text = (TextView) findViewById(R.id.login_text);
 
@@ -112,8 +115,10 @@ public class LawyerSignUp extends AppCompatActivity {
     private void registerUser(){
 
         final String name = registername.getText().toString().trim();
+        final String namelowercase = registername.getText().toString().toLowerCase().trim();
         final String password = registerpassword.getText().toString().trim();
         final String phone = registerphone.getText().toString().trim();
+        final String aadhar = registeraadhar.getText().toString().trim();
 
 
         if(name.isEmpty()){
@@ -159,7 +164,13 @@ public class LawyerSignUp extends AppCompatActivity {
             return;
         }
 
-        progressDialog.setTitle("Creating your profile");
+        if(aadhar.length()!=12){
+            registeraadhar.setError("Enter correct Aadhar number");
+            registeraadhar.requestFocus();
+            return;
+        }
+
+        progressDialog.setTitle("Creating profile");
         progressDialog.setMessage("Please wait a moment...");
         progressDialog.show();
 
@@ -174,32 +185,26 @@ public class LawyerSignUp extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"User Created",Toast.LENGTH_SHORT).show();
 
                             progressDialog.cancel();
-                            userID = mAuth.getCurrentUser().getUid();
+                            LawyeruserID = mAuth.getCurrentUser().getUid();
 
-                            DocumentReference documentReference = firestore.collection("Lawyers").document(userID);
+                            DocumentReference documentReference = firestore.collection("Lawyers").document(LawyeruserID);
 
-                            DocumentReference documentReference_clients = firestore.collection("Lawyer Clients").document(userID);
-
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("Name",name);
-                            user.put("Email",email);
-                            user.put("Phone",phone);
+                            Lawyer lawyer = new Lawyer();
+                            lawyer.name = name;
+                            lawyer.lawyerEmail = email;
+                            lawyer.lawyerPhone = phone;
+                            lawyer.lawyerAadhar = aadhar;
+                            lawyer.lowerCaseName = name.toLowerCase();
 
                             startActivity(new Intent(LawyerSignUp.this,LawyerProfile.class));
-
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            documentReference.set(lawyer).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getApplicationContext(),"Profile Created",Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-                            documentReference_clients.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
 
                                 }
                             });
+
 
                         } else {
 
@@ -208,34 +213,8 @@ public class LawyerSignUp extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
 
-
                         }
                     }
                 });
     }
-
-
-    /*
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode==RESULT_OK && requestCode==PICK_IMAGE) {
-            try {
-                imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                lawyer_image.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(LawyerSignUp.this, "Something went wrong", Toast.LENGTH_LONG).show();
-            }
-
-        }else {
-            Toast.makeText(LawyerSignUp.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
-        }
-    }
-
-     */
 }

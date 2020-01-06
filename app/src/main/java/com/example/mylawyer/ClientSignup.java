@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ClientSignup extends AppCompatActivity {
 
-    EditText client_name,client_phone;
-    Button client_verify_button;
-    String phonenumber;
-    FirebaseAuth mAuth;
+    private EditText client_name,client_phone;
+    private Button client_verify_button;
+    private String phonenumber;
+    private FirebaseAuth mAuth;
 
     androidx.appcompat.widget.Toolbar toolbar_client_signup;
 
@@ -25,6 +26,7 @@ public class ClientSignup extends AppCompatActivity {
         setContentView(R.layout.activity_client_signup);
 
         mAuth = FirebaseAuth.getInstance();
+
 
         client_name = (EditText)findViewById(R.id.client_name_edit_text);
         client_phone = (EditText)findViewById(R.id.client_phone_edit_text);
@@ -41,14 +43,14 @@ public class ClientSignup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                gotoOTPscreen();
+                goToOTPpage();
 
             }
         });
 
     }
 
-    private void gotoOTPscreen() {
+    private void goToOTPpage() {
 
         final String name = client_name.getText().toString().trim();
         final String phone = client_phone.getText().toString().trim();
@@ -74,6 +76,7 @@ public class ClientSignup extends AppCompatActivity {
         phonenumber = "+91"+phone;
 
         Intent intent = new Intent(ClientSignup.this, Clientotpverification.class);
+        intent.putExtra("phonewithoutISD",phone);
         intent.putExtra("phonenumber",phonenumber);
         intent.putExtra("name",name);
         startActivity(intent);

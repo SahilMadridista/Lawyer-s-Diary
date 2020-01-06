@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -42,17 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ClientSignup.class));
             }
         });
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-//        if(mAuth.getCurrentUser()!=null){
-//            finish();
-//            startActivity(new Intent(getApplicationContext(),LawyerProfile.class));
-//        }
 
     }
 

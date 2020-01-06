@@ -45,7 +45,7 @@
         android:textSize="17sp"
         android:elevation="30dp"
         android:text="I'm a Client"
-        android:textColor="#961010"
+        android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/client_button_background"/>
 
 

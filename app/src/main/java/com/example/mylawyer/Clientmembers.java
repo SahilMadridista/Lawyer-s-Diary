@@ -1,19 +1,21 @@
 package com.example.mylawyer;
 
-public class Staffmembers {
+public class Clientmembers {
 
-    String name,post,phone,aadhar;
+    String name,about,phone,date,aadhar;
     String userID;
 
-    public Staffmembers(){
+    public Clientmembers(){
 
     }
 
-    public Staffmembers(String userID,String name, String post, String phone, String aadhar) {
+    public Clientmembers(String userID,String name, String about, String phone, String date, String aadhar) {
+
         this.userID = userID;
         this.name = name;
-        this.post = post;
+        this.about = about;
         this.phone = phone;
+        this.date = date;
         this.aadhar = aadhar;
     }
 
@@ -25,6 +27,14 @@ public class Staffmembers {
         this.aadhar = aadhar;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,13 +43,6 @@ public class Staffmembers {
         this.name = name;
     }
 
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
-    }
 
     public String getPhone() {
         return phone;
@@ -49,6 +52,14 @@ public class Staffmembers {
         this.phone = phone;
     }
 
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
     public String getUserID() {
         return userID;
     }
@@ -56,4 +67,5 @@ public class Staffmembers {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
 }

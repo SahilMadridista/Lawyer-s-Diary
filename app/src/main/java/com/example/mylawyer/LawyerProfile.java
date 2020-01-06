@@ -2,33 +2,38 @@ package com.example.mylawyer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import android.annotation.SuppressLint;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mylawyer.model.Case;
+import com.example.mylawyer.model.Lawyer;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 public class LawyerProfile extends AppCompatActivity {
@@ -42,8 +47,10 @@ public class LawyerProfile extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private DatabaseReference myref;
     private String userID;
-    RecyclerView client_info_recycler_view;
+    RecyclerView clientInfoRecyclerView;
     FirebaseFirestore firestore;
+    CaseRecyclerViewAdapter adapter;
+    ArrayList<Clientmembers> clientmembersArrayList  = new ArrayList<>();
     androidx.appcompat.widget.Toolbar lawyer_profile_toolbar;
 
 
@@ -54,6 +61,7 @@ public class LawyerProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lawyer_profile);
 
+
         mAuth = FirebaseAuth.getInstance();
         myref = mFirebaseDatabase.getInstance().getReference();
         profile_name = (TextView)findViewById(R.id.profile_name);
@@ -61,7 +69,8 @@ public class LawyerProfile extends AppCompatActivity {
         profile_phone = (TextView)findViewById(R.id.profile_phone);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-        client_info_recycler_view = (RecyclerView)findViewById(R.id.client_info_recycler_view);
+        clientInfoRecyclerView = (RecyclerView)findViewById(R.id.client_info_recycler_view);
+        clientInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -84,9 +93,9 @@ public class LawyerProfile extends AppCompatActivity {
 
                 progressDialog.show();
 
-                profile_name.setText(documentSnapshot.getString("Name"));
-                profile_email.setText(documentSnapshot.getString("Email"));
-                profile_phone.setText(documentSnapshot.getString("Phone"));
+                profile_name.setText(documentSnapshot.getString("name"));
+                profile_email.setText(documentSnapshot.getString("lawyerEmail"));
+                profile_phone.setText(documentSnapshot.getString("lawyerPhone"));
 
                 progressDialog.cancel();
 
@@ -95,9 +104,112 @@ public class LawyerProfile extends AppCompatActivity {
 
         // End - Displaying user info on the profile page
 
+        Random random =  new Random();
+        for(int i = 0;i<2;i++){
+
+
+            Map<String,String> dataMap = new HashMap<>();
+
+            dataMap.put("Name", "" + random.nextInt(50));
+            dataMap.put("Post", "" + random.nextInt(50));
+            dataMap.put("Phone", "" + random.nextInt(50));
+
+            firestore.collection("Lawyers").document(userID).collection("Clients")
+                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+//                            Toast.makeText(StaffInformation.this,"Opening Staff List",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+        }
+
+       showData();
+
     }
 
     // End of OnCreate
+
+//    public void showData() {
+//
+//        if(casesArrayList.size()>0)
+//            casesArrayList.clear();
+//
+//        firestore.collection("Lawyers").document(userID).collection("Clients")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//
+//                        for(QueryDocumentSnapshot querySnapshot : task.getResult()){
+//
+//                            Clientmembers clientmembers = new Clientmembers(querySnapshot.getId()
+//                                    ,querySnapshot.getString("Name"),
+//                                    querySnapshot.getString("Case About")
+//                                    ,querySnapshot.getString("Phone")
+//                                    ,querySnapshot.getString("Date")
+//                                    ,querySnapshot.getString("Aadhar"));
+//
+//                            casesArrayList.add(clientmembers);
+//
+//                        }
+//
+//                        adapter = new CaseRecyclerViewAdapter(LawyerProfile.this,casesArrayList);
+//                        clientInfoRecyclerView.setAdapter(adapter);
+//
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//
+//                Toast.makeText(LawyerProfile.this,"Failed",Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//
+//    }
+
+    public void showData() {
+
+        firestore.collection("Lawyers").document(userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                final Lawyer lawyer = documentSnapshot.toObject(Lawyer.class);
+
+                final MutableLiveData<ArrayList<Case>> casesInformationList = new MutableLiveData<>();
+                casesInformationList.setValue(new ArrayList<Case>());
+
+                final CaseRecyclerViewAdapter adapter = new CaseRecyclerViewAdapter(LawyerProfile.this, casesInformationList.getValue());
+                clientInfoRecyclerView.setAdapter(adapter);
+
+                for (String caseId : lawyer.clientsCasesList) {
+                    firestore.collection("Cases").document(caseId).get().addOnSuccessListener(
+                            new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    synchronized (casesInformationList) {
+                                        casesInformationList.getValue().add(documentSnapshot.toObject(Case.class));
+                                        adapter.notifyItemInserted(casesInformationList.getValue().size()-1);
+                                    }
+                                }
+                            }
+                    );
+                }
+
+                casesInformationList.observe(LawyerProfile.this, new Observer<ArrayList<Case>>() {
+                    @Override
+                    public void onChanged(ArrayList<Case> cases) {
+                        if (cases.size() == lawyer.clientsCasesList.size()) {
+
+                        }
+                    }
+                });
+
+            }
+        });
+    }
 
     // Start - Top 3 dots menu bar
 
@@ -136,7 +248,7 @@ public class LawyerProfile extends AppCompatActivity {
                 break;
 
             case R.id.add_client:
-                startActivity(new Intent(this,Addclient.class));
+                startActivity(new Intent(this, AddCaseActivity.class));
                 break;
 
             case R.id.sign_out:
@@ -159,7 +271,7 @@ public class LawyerProfile extends AppCompatActivity {
         if(mAuth.getCurrentUser()==null){
             //Stay on home page of the app
             finish();
-            startActivity(new Intent(LawyerProfile.this,MainActivity.class));
+            startActivity(new Intent(this,MainActivity.class));
         }
 
     }

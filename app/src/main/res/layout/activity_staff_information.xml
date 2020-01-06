@@ -9,6 +9,7 @@
     tools:context=".StaffInformation">
 
     <androidx.appcompat.widget.Toolbar
+
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/staff_member_toolbar"
@@ -16,8 +17,8 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:background="@drawable/layout_background">
 
-
     </androidx.appcompat.widget.Toolbar>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

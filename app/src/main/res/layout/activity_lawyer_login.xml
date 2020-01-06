@@ -23,42 +23,39 @@
         android:text="Enter Your Details to Log in"
         android:layout_below="@id/lawyer_login_toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:id="@+id/header_text"
-        android:textSize="15dp"
-        android:textColor="@color/red"/>
+        android:textSize="17dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/login_email_layout">
 
         <EditText
             android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:id="@+id/email_login_edit_text"
             android:hint="Enter Email"
+            android:textSize="13sp"
             android:drawableLeft="@drawable/name_icon"
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"/>
 
-
-
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/login_email_layout"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:id="@+id/login_password_layout">
-
 
         <EditText
             android:layout_width="300dp"
@@ -66,15 +63,12 @@
             android:inputType="textPassword"
             android:id="@+id/password_login_edit_text"
             android:hint="Enter Password"
+            android:textSize="13sp"
             android:drawableLeft="@drawable/password_icon"
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"/>
 
-
-
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -88,19 +82,14 @@
 
     <Button
         android:layout_width="300dp"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:background="@drawable/button_background_no_round"
         android:layout_below="@id/login_checkbox"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Log in"
         android:textAllCaps="false"
         android:id="@+id/login_button"
-        android:textColor="@color/white"
-        android:textSize="17sp"/>
-
-
-
-
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

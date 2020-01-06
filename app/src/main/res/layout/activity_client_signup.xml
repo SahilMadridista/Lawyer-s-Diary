@@ -26,7 +26,7 @@
         android:layout_marginTop="15dp"
         android:textSize="17dp"
         android:id="@+id/header_text"
-        android:textColor="@color/red"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
@@ -42,6 +42,7 @@
             android:inputType="textCapWords"
             android:id="@+id/client_name_edit_text"
             android:hint="Enter full Name"
+            android:textSize="13sp"
             android:drawableLeft="@drawable/name_icon"
             android:paddingLeft="10dp"
             android:drawablePadding="10dp"
@@ -56,8 +57,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/client_phone_layout"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/client_name_layout"
-        android:layout_marginTop="10dp">
+        android:layout_below="@id/client_name_layout">
 
         <EditText
             android:id="@+id/client_phone_edit_text"
@@ -65,48 +65,24 @@
             android:layout_height="45dp"
             android:drawableLeft="@drawable/phone_icon"
             android:drawablePadding="10dp"
+            android:textSize="13sp"
             android:hint=" Enter Phone Number"
             android:inputType="phone"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
 
-
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/client_unique_id_layout"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_below="@id/client_phone_layout"-->
-<!--        android:layout_marginTop="10dp">-->
-
-<!--        <EditText-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:hint="Unique ID"-->
-<!--            android:id="@+id/uid_edit_text"-->
-<!--            android:drawableLeft="@drawable/id_icon"-->
-<!--            android:paddingRight="10dp"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:inputType="text"-->
-<!--            android:drawablePadding="10dp"/>-->
-
-
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-
     <Button
-
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/client_phone_layout"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_background_no_round"
         android:textColor="@color/white"
-        android:textSize="17sp"
         android:id="@+id/verify_client_buton"
-        android:text="Send OTP"
+        android:text="Check for Lawyer"
         android:textAllCaps="false"/>
 
 </RelativeLayout>

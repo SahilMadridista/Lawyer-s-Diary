@@ -4,17 +4,31 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/edittext_background">
+    android:elevation="20dp"
+    android:layout_marginBottom="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/edittext_background"
+        android:padding="10dp">
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="23sp"
+            android:text="Name :"
+            android:textSize="20sp"
+            android:id="@+id/name_header"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/name_header"
             android:textColor="@color/black"
             android:text="Name of Member"
             android:id="@+id/staff_name_text"/>
@@ -22,33 +36,86 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Post :"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:layout_below="@id/name_header"
+            android:id="@+id/post_header"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:text="Post of Member"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/post_header"
             android:textColor="@color/black"
             android:id="@+id/staff_post_text"
+            android:textSize="18sp"
             android:layout_below="@id/staff_name_text"
             />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone_header"
+            android:text="Phone :"
+            android:textSize="17sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_below="@id/post_header"
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/staff_post_text"
             android:text="Phone Number"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/phone_header"
             android:id="@+id/staff_phone_text"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginLeft="5dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:id="@+id/aadhar_header"
+            android:text="Aadhar :"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_below="@id/phone_header"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/staff_aadhar_text"
+            android:text="Aadhar Number"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/aadhar_header"
+            android:layout_below="@id/staff_phone_text"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete_icon"
+            android:background="@color/white"
+            android:id="@+id/remove_staff_button"
             android:layout_centerVertical="true"
-            android:text="Remove"
-            android:id="@+id/remove_button"
-            android:layout_marginRight="10dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"/>
 
     </RelativeLayout>
+
+
 
 </LinearLayout>

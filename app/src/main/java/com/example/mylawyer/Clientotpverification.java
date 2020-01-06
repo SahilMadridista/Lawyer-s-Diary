@@ -2,7 +2,6 @@ package com.example.mylawyer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.mylawyer.model.Client;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -34,13 +36,14 @@ public class Clientotpverification extends AppCompatActivity {
     EditText otp_edittext;
     Button verify_button;
     String phone;
+    String phonewithoutISD;
     String name;
     String codeSentToUser;
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
     private ProgressBar progressBar;
     FirebaseAuthSettings firebaseAuthSettings;
-    String userID;
+    String clientuserID;
     private ProgressDialog progressDialog;
 
 
@@ -53,7 +56,7 @@ public class Clientotpverification extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
-        progressDialog.setTitle("Loggind in");
+        progressDialog.setTitle("Logging in");
         progressDialog.setMessage("Just a moment...");
 
         otp_edittext = (EditText)findViewById(R.id.otp_edittext);
@@ -67,6 +70,7 @@ public class Clientotpverification extends AppCompatActivity {
 
         name = getIntent().getExtras().getString("name");
         phone = getIntent().getExtras().getString("phonenumber");
+        phonewithoutISD = getIntent().getExtras().getString("phonewithoutISD");
         sendVerificationCode(phone); //Method to send otp
 
         firebaseAuthSettings = mAuth.getFirebaseAuthSettings();
@@ -90,16 +94,6 @@ public class Clientotpverification extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if(mAuth.getCurrentUser() != null) {
-            finish();
-            startActivity(new Intent(Clientotpverification.this,Clienthomepage.class));
-        }
-
-    }
 
     private void verifyOTPcode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSentToUser , code);
@@ -114,28 +108,47 @@ public class Clientotpverification extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            userID = mAuth.getCurrentUser().getUid();
+                            progressDialog.show();
 
-                            DocumentReference documentReference = firestore.collection("Clients").document(userID);
+//                            clientuserID = mAuth.getCurrentUser().getUid();
+//
+//                            DocumentReference documentReference = firestore.collection("Clients").document(clientuserID);
+//
+//                            Map<String,Object> user = new HashMap<>();
+//                            user.put("Name",name);
+//                            user.put("Phone",phone);
+//
+//                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                @Override
+//                                public void onSuccess(Void aVoid) {
+//                                    Toast.makeText(getApplicationContext(),"Profile Created",Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                            progressDialog.cancel();
+//
+//                            Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
+//                            finish();
 
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("Name",name);
-                            user.put("Phone",phone);
+                            Client clientinfo = new Client();
 
-                            //startActivity(new Intent(Clientotpverification.this,Clienthomepage.class));
+                            clientinfo.clientName = name;
+                            clientinfo.clientPhone = phone;
 
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            final DocumentReference documentReference = firestore.collection("Clients").document(phone);
+
+                            documentReference.set(clientinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(getApplicationContext(),"Profile Created",Toast.LENGTH_SHORT).show();
+
+                                    Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
+
                                 }
                             });
-                            progressDialog.cancel();
 
-                            Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
-                            finish();
+                            Intent intent = new Intent(Clientotpverification.this,Clienthomepage.class);
+                            intent.putExtra("phoneWithoutISD",phonewithoutISD);
+                            startActivity(intent);
 
-                            startActivity(new Intent(Clientotpverification.this,Clienthomepage.class));
 
                         }
                         else {

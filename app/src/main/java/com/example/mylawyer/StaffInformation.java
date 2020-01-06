@@ -45,41 +45,20 @@ public class StaffInformation extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         userID = mAuth.getCurrentUser().getUid();
         firestore = FirebaseFirestore.getInstance();
+
+
         staff_info_toolbar = findViewById(R.id.staff_member_toolbar);
         setSupportActionBar(staff_info_toolbar);
+        getSupportActionBar().setTitle("Your Staff");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         recyclerView = (RecyclerView)findViewById(R.id.member_info_recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        Random random =  new Random();
-        for(int i = 0;i<2;i++){
-
-
-            Map<String, String> dataMap = new HashMap<>();
-
-            dataMap.put("Name", "" + random.nextInt(50));
-            dataMap.put("Post", "" + random.nextInt(50));
-            dataMap.put("Phone", "" + random.nextInt(50));
-
-            firestore.collection("Lawyers").document(userID).collection("Staff Members")
-                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-
-//                            Toast.makeText(StaffInformation.this,"Opening Staff List",Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
-        }
-
         addTestdatatoFirebase();
-
-        showData();
+        showStaffData();
 
     }
 
@@ -88,7 +67,7 @@ public class StaffInformation extends AppCompatActivity {
 
     // Start - ShowData method
 
-    private void showData() {
+    public void showStaffData() {
 
         if(staffmembersArrayList.size()>0)
             staffmembersArrayList.clear();
@@ -101,8 +80,11 @@ public class StaffInformation extends AppCompatActivity {
 
                         for(QueryDocumentSnapshot querySnapshot : task.getResult()){
 
-                            Staffmembers staffmembers = new Staffmembers(querySnapshot.getString("Name"),
-                                    querySnapshot.getString("Post"),querySnapshot.getString("Phone"));
+                            Staffmembers staffmembers = new Staffmembers(querySnapshot.getId()
+                                    ,querySnapshot.getString("Name")
+                                    ,querySnapshot.getString("Post")
+                                    ,querySnapshot.getString("Phone")
+                                    ,querySnapshot.getString("Aadhar"));
 
                             staffmembersArrayList.add(staffmembers);
 
@@ -126,6 +108,30 @@ public class StaffInformation extends AppCompatActivity {
     // End - ShowData method
 
     private void addTestdatatoFirebase(){
+
+        Random random =  new Random();
+        for(int i = 0;i<2;i++){
+
+
+            Map<String, String> dataMap = new HashMap<>();
+
+            dataMap.put("Name", "" + random.nextInt(50));
+            dataMap.put("Post", "" + random.nextInt(50));
+            dataMap.put("Phone", "" + random.nextInt(50));
+            dataMap.put("Aadhar","" + random.nextInt(50));
+
+            firestore.collection("Lawyers").document(userID).collection("Staff Members")
+                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots,
+                                            @Nullable FirebaseFirestoreException e) {
+
+//                            Toast.makeText(StaffInformation.this,"Opening Staff List",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+        }
 
     }
 
