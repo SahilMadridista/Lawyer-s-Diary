@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp;
 
 public interface CasesModifier {
 
-    void addDetails(String clientName, Timestamp startTime);
+    void addDetails(String clientName, Timestamp startTime, String caseID);
 
     void deleteSelectedCase(String caseId);
 

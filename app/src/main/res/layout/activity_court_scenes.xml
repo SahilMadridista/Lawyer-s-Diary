@@ -17,201 +17,625 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/name_date_layout"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_below="@id/court_scenes_toolbar">-->
+
+<!--        <RelativeLayout-->
+
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/edittext_background">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="13sp"-->
+<!--                android:text="Client's name"-->
+<!--                android:id="@+id/client_name_header"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:textColor="@color/black"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:id="@+id/client_name_add_scene"-->
+<!--                android:layout_below="@id/client_name_header"/>-->
+
+
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/edittext_background">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Case Starting Date"-->
+<!--                android:textSize="13sp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:id="@+id/case_start_date_text"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_below="@id/case_start_date_text"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:textAlignment="center"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="15sp"-->
+<!--                android:id="@+id/case_start_date_add_scene"/>-->
+
+
+<!--        </RelativeLayout>-->
+
+
+<!--    </LinearLayout>-->
+
+
+
+
+
+
+
+
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@+id/name_date_layout"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:id="@+id/assignedlawyerlayout"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="17sp"-->
+<!--            android:id="@+id/assigned_lawyer"-->
+<!--            android:hint="Lawyer Assigned"-->
+<!--            android:inputType="textCapWords"/>-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:id="@+id/dates_layout"-->
+<!--        android:layout_below="@id/assignedlawyerlayout">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@drawable/edittext_background"-->
+<!--            android:layout_weight="1">-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/current_date_layout"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:layout_centerInParent="true">-->
+
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Hearing Date"-->
+<!--                    android:gravity="center"-->
+<!--                    android:inputType="date"-->
+<!--                    android:id="@+id/current_date_edittext"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@drawable/edittext_background"-->
+<!--            android:layout_weight="1">-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/next_date_layout"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:layout_centerInParent="true">-->
+
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Next Date"-->
+<!--                    android:gravity="center"-->
+<!--                    android:inputType="date"-->
+<!--                    android:id="@+id/next_date_edittext"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        </RelativeLayout>-->
+
+<!--    </LinearLayout>-->
+
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/dates_layout"-->
+<!--        android:layout_above="@id/text_layout"-->
+<!--        android:id="@+id/what_happened_layout"-->
+<!--        android:layout_margin="20dp"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_below="@id/dates_layout"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:id="@+id/what_happened_edittext"-->
+<!--            android:hint="What Happened in Court ?"-->
+<!--            android:singleLine="false"-->
+<!--            android:textSize="13dp"-->
+<!--            android:gravity="start"-->
+<!--            android:padding="10dp"-->
+<!--            android:lines="8"/>-->
+
+
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:id="@+id/text_layout"-->
+<!--        android:layout_above="@id/add_info_button">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:textAlignment="center"-->
+<!--            android:padding="30dp"-->
+<!--            android:text="Fill this information carefully because this will be visible to your Client"-->
+<!--            android:textColor="@color/colorPrimaryDark"/>-->
+
+
+<!--    </RelativeLayout>-->
+
+
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name_date_layout"
-        android:orientation="horizontal"
-        android:layout_below="@id/court_scenes_toolbar">
+        android:layout_below="@id/court_scenes_toolbar"
+        android:layout_above="@id/add_info_button">
 
         <RelativeLayout
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/edittext_background">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
-                android:text="Client's name"
+                android:text="Client's Name"
+                android:textColor="@color/black"
                 android:id="@+id/client_name_header"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="13dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="23sp"
+                android:text="Name of Client"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/client_name_add_scene"
+                android:layout_below="@id/client_name_header"
+                android:layout_marginLeft="13dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_below="@id/client_name_add_scene"
+                android:layout_marginTop="10dp"
+                android:id="@+id/first_view"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:layout_marginLeft="13dp"
+                android:id="@+id/case_start_date_text"
+                android:text="Case Starting Date"
+                android:layout_below="@id/first_view"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:layout_margin="10dp"
-                android:id="@+id/client_name_add_scene"
-                android:layout_below="@id/client_name_header"/>
+                android:textSize="23sp"
+                android:layout_marginLeft="13dp"
+                android:text="Starting Date"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/case_start_date_add_scene"
+                android:layout_below="@id/case_start_date_text"/>
 
-
-        </RelativeLayout>
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/edittext_background">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Case Starting Date"
-                android:textSize="13sp"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:id="@+id/case_start_date_text"/>
-
-            <TextView
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/case_start_date_text"
-                android:layout_marginTop="5dp"
-                android:textAlignment="center"
-                android:layout_margin="10dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:id="@+id/case_start_date_add_scene"/>
-
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-
-
-
-
-
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/name_date_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/assignedlawyerlayout">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:id="@+id/assigned_lawyer"
-            android:hint="Lawyer Assigned"
-            android:gravity="center"
-            android:inputType="textCapWords"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:id="@+id/dates_layout"
-        android:layout_below="@id/assignedlawyerlayout">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/edittext_background"
-            android:layout_weight="1">
+                android:layout_height="0.8dp"
+                android:layout_below="@id/case_start_date_add_scene"
+                android:layout_marginTop="10dp"
+                android:id="@+id/second_view"
+                android:background="@color/gray"/>
 
             <com.google.android.material.textfield.TextInputLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/current_date_layout"
-                android:layout_margin="20dp"
-                android:layout_centerInParent="true">
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/second_view"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/assignedlawyerlayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Hearing Date"
-                    android:gravity="center"
-                    android:inputType="date"
-                    android:id="@+id/current_date_edittext"/>
+                    android:textSize="17sp"
+                    android:id="@+id/assigned_lawyer"
+                    android:hint="Lawyer Assigned"
+                    android:inputType="textCapWords"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_below="@id/assignedlawyerlayout"
+                android:layout_marginTop="10dp"
+                android:id="@+id/third_view"
+                android:background="@color/gray"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/edittext_background"
-            android:layout_weight="1">
-
-            <com.google.android.material.textfield.TextInputLayout
-
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/next_date_layout"
-                android:layout_margin="20dp"
-                android:layout_centerInParent="true">
+                android:layout_below="@id/third_view"
+                android:id="@+id/HearingDateRelativeLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:id="@+id/HearingDateText"
+                    android:layout_marginTop="10dp"
+                    android:text="Hearing Date"
+                    android:layout_marginLeft="13sp"
+                    android:textColor="@color/black"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/HearingDateText"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/HearingDateDayLayout"
+                            android:layout_margin="10dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Day"
+                                android:id="@+id/HearingDateDay"
+                                android:inputType="number"
+                                android:paddingLeft="5dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/HearingDateMonthLayout"
+                            android:layout_margin="10dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Month"
+                                android:id="@+id/HearingDateMonth"
+                                android:inputType="textCapWords"
+                                android:paddingLeft="5dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/HearingDateYearLayout"
+                            android:layout_margin="10dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Year"
+                                android:id="@+id/HearingDateYear"
+                                android:inputType="number"
+                                android:paddingLeft="5dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_below="@id/HearingDateRelativeLayout"
+                android:id="@+id/fourth_view"
+                android:background="@color/gray"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/WhatHappenedInCourtLayout"
+                android:layout_below="@id/fourth_view"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Next Date"
-                    android:gravity="center"
-                    android:inputType="date"
-                    android:id="@+id/next_date_edittext"/>
+                    android:lines="7"
+                    android:hint="What happened in court "
+                    android:singleLine="false"
+                    android:textSize="13sp"
+                    android:id="@+id/what_happened_edittext"
+                    android:gravity="start"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_below="@id/WhatHappenedInCourtLayout"
+                android:id="@+id/fifth_view"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fifth_view"
+                android:id="@+id/NextDateRelativeLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:id="@+id/NextDateText"
+                    android:layout_marginTop="10dp"
+                    android:text="Next Date"
+                    android:layout_marginLeft="13sp"
+                    android:textColor="@color/black"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NextDateText"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/NextDateDayLayout"
+                            android:layout_margin="10dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Day"
+                                android:id="@+id/NextDateDay"
+                                android:inputType="number"
+                                android:paddingLeft="5dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/NextDateMonthLayout"
+                            android:layout_margin="10dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Month"
+                                android:id="@+id/NextDateMonth"
+                                android:inputType="textCapWords"
+                                android:paddingLeft="5dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/NextDateYearLayout"
+                            android:layout_margin="10dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Year"
+                                android:paddingLeft="5dp"
+                                android:id="@+id/NextDateYear"
+                                android:inputType="number"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+
+
+
+
+
+                </LinearLayout>
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </RelativeLayout>
 
-    </LinearLayout>
 
 
-    <EditText
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/dates_layout"
-        android:background="@drawable/edittext_background"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/what_happened_edittext"
-        android:hint="What Happened in Court ?"
-        android:singleLine="false"
-        android:textSize="13dp"
-        android:gravity="start"
-        android:padding="10dp"
-        android:lines="8"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/what_happened_edittext"
-        android:layout_above="@id/add_info_button">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textAlignment="center"
-            android:padding="30dp"
-            android:text="Fill this information carefully because this will be visible to your Client"
-            android:textColor="@color/colorPrimaryDark"/>
 
 
-    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </ScrollView>
+
+
 
     <Button
         android:layout_width="match_parent"
@@ -219,7 +643,7 @@
         android:background="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"
         android:textColor="@color/white"
-        android:text="Add Information"
+        android:text="Add Case Information"
         android:id="@+id/add_info_button"
         android:textAllCaps="false"/>
 

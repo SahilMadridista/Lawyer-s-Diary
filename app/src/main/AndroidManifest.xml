@@ -21,7 +21,7 @@
             android:name=".AddCaseActivity"
             android:parentActivityName=".LawyerProfileActivity" />
         <activity
-            android:name=".Addstaffmembers"
+            android:name=".AddStaffMembersActivity"
             android:parentActivityName=".LawyerProfileActivity" />
         <activity
             android:name=".StaffInformation"

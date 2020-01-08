@@ -36,6 +36,7 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
     private FirebaseFirestore firestore;
     private ProgressDialog progressDialog;
     private Timestamp caseStartTime;
+    String LawyerName,LawyerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,9 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
         progressDialog.setTitle("Adding Client");
         progressDialog.setMessage("Wait a moment...");
         progressDialog.setCancelable(false);
+
+        LawyerName = getIntent().getExtras().getString("Lawyer_Name");
+        LawyerID = getIntent().getExtras().getString("Lawyer_Id");
 
         add_client_button = (Button)findViewById(R.id.add_client_button);
         choose_date_button = (Button)findViewById(R.id.choose_date_button);
@@ -138,33 +142,14 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
         clientCase.caseDescription = caseDescription;
         clientCase.startTime = caseStartTime;
         clientCase.clientId = phone;
+        clientCase.clientPhone = phone;
         clientCase.clientAadhar = client_aadhar_number;
+        clientCase.lawyerName = LawyerName;
+        clientCase.lawyerId = LawyerID;
 
         final DocumentReference ref = firestore.collection("Cases").document();
 
         progressDialog.show();
-
-//        firestore.collection("Lawyers").document(mAuth.getCurrentUser().getUid()).collection("Clients")
-//                .add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//
-//                Toast.makeText(getApplicationContext(),"Client Added",Toast.LENGTH_SHORT).show();
-//
-//                progressDialog.cancel();
-//
-//
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//
-//                String error = e.getMessage();
-//
-//                Toast.makeText(getApplicationContext(),"Error: "+ error,Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
 
         clientCase.caseId = ref.getId();
 

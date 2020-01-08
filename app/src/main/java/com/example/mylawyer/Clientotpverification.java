@@ -1,7 +1,5 @@
 package com.example.mylawyer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +9,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mylawyer.model.Client;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -26,8 +26,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.concurrent.TimeUnit;
 
 public class Clientotpverification extends AppCompatActivity {
@@ -132,15 +131,16 @@ public class Clientotpverification extends AppCompatActivity {
                             Client clientinfo = new Client();
 
                             clientinfo.clientName = name;
-                            clientinfo.clientPhone = phone;
+                            clientinfo.clientPhone = phonewithoutISD;
 
-                            final DocumentReference documentReference = firestore.collection("Clients").document(phone);
+                            final DocumentReference documentReference = firestore.collection("Clients")
+                                    .document(phonewithoutISD);
 
                             documentReference.set(clientinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 
-                                    Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
 
                                 }
                             });

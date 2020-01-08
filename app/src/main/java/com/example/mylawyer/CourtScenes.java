@@ -12,14 +12,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mylawyer.model.CaseInformation;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class CourtScenes extends AppCompatActivity{
 
@@ -27,11 +30,15 @@ public class CourtScenes extends AppCompatActivity{
     String Client_Name;
     String Client_Case_Start_Date;
     TextView client_name,start_date;
-    EditText assigned_lawyer,what_happened,current_hearing_date,next_hearing_date;
     Button add_information;
+    EditText AssignedLawyerEdittext, WhatHappenedinCourtEdittext;
+    EditText HearingDateDayEdittext, HearingDateMonthEdittext, HearingDateYearEdittext;
+    EditText NextDateDayEdittext, NextDateMonthEdittext, NextDateYearEdittext;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     private ProgressDialog progressDialog;
+    String HDD,HDM,HDY;
+    String NDD,NDM,NDY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +54,21 @@ public class CourtScenes extends AppCompatActivity{
         getSupportActionBar().setTitle("What happened in Court");
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Adding Client information");
+        progressDialog.setTitle("Adding Case information");
         progressDialog.setMessage("Wait a moment...");
 
         client_name = (TextView)findViewById(R.id.client_name_add_scene);
-        start_date = (TextView)findViewById(R.id.case_start_date_add_scene);
 
-        assigned_lawyer = (EditText)findViewById(R.id.assigned_lawyer);
-        what_happened = (EditText)findViewById(R.id.what_happened_edittext);
-        current_hearing_date = (EditText)findViewById(R.id.current_date_edittext);
-        next_hearing_date = (EditText)findViewById(R.id.next_date_edittext);
+        AssignedLawyerEdittext = (EditText)findViewById(R.id.assigned_lawyer);
+        WhatHappenedinCourtEdittext = (EditText)findViewById(R.id.what_happened_edittext);
+
+        HearingDateDayEdittext = (EditText)findViewById(R.id.HearingDateDay);
+        HearingDateMonthEdittext = (EditText)findViewById(R.id.HearingDateMonth);
+        HearingDateYearEdittext = (EditText)findViewById(R.id.HearingDateYear);
+
+        NextDateDayEdittext = (EditText)findViewById(R.id.NextDateDay);
+        NextDateMonthEdittext = (EditText)findViewById(R.id.NextDateMonth);
+        NextDateYearEdittext = (EditText)findViewById(R.id.NextDateYear);
 
 
         add_information = (Button)findViewById(R.id.add_info_button);
@@ -70,81 +82,130 @@ public class CourtScenes extends AppCompatActivity{
         });
 
         Client_Name = getIntent().getExtras().getString("Client Name");
-        Client_Case_Start_Date = getIntent().getExtras().getString("Start Date");
-
+        //Client_Case_Start_Date = getIntent().getExtras().getString("Start Date");
 
         client_name.setText(Client_Name);
-        start_date.setText(Client_Case_Start_Date);
+        //start_date.setText(Client_Case_Start_Date);
 
     }
 
     private void addInformation() {
 
-        final String assigned_lawyer_name = assigned_lawyer.getText().toString().trim();
-        final String hearing_date_text = current_hearing_date.getText().toString().trim();
-        final String next_date = next_hearing_date.getText().toString().trim();
-        final String what_happened_in_court = what_happened.getText().toString().trim();
+        HDD = HearingDateDayEdittext.getText().toString().trim();
+        HDM = HearingDateMonthEdittext.getText().toString().trim();
+        HDY = HearingDateYearEdittext.getText().toString().trim();
+
+        NDD = NextDateDayEdittext.getText().toString().trim();
+        NDM = NextDateMonthEdittext.getText().toString().trim();
+        NDY = NextDateYearEdittext.getText().toString().trim();
+
+        String caseID = getIntent().getExtras().getString("CaseID");
+
+        final String assigned_lawyer_name = AssignedLawyerEdittext.getText().toString().trim();
+        final String what_happened_in_court = WhatHappenedinCourtEdittext.getText().toString().trim();
+        final String FullHearingDate = HDD + " " + HDM + " " + HDY;
+        final String FullNextHearingDate = NDD + " " + NDM + " " + NDY;
 
         if(assigned_lawyer_name.isEmpty()){
-            assigned_lawyer.setError("Please enter name");
-            assigned_lawyer.requestFocus();
+            AssignedLawyerEdittext.setError("Please Enter Lawyer's Name");
+            AssignedLawyerEdittext.requestFocus();
             return;
         }
 
-        if(hearing_date_text.isEmpty()){
-            current_hearing_date.setError("Enter date");
-            current_hearing_date.requestFocus();
+        if(HDD.isEmpty()){
+            HearingDateDayEdittext.setError("Can't be empty");
+            HearingDateDayEdittext.requestFocus();
             return;
         }
 
-        if(next_date.isEmpty()){
-            next_hearing_date.setError("Enter date");
-            next_hearing_date.requestFocus();
+        if(HDM.isEmpty()){
+            HearingDateMonthEdittext.setError("Can't be empty");
+            HearingDateMonthEdittext.requestFocus();
             return;
         }
+
+        if(HDY.isEmpty()){
+            HearingDateYearEdittext.setError("Can't be empty");
+            HearingDateYearEdittext.requestFocus();
+            return;
+        }
+
 
         if(what_happened_in_court.isEmpty()){
-            what_happened.setError("This can't be empty");
-            what_happened.requestFocus();
+            WhatHappenedinCourtEdittext.setError("This can't be empty");
+            WhatHappenedinCourtEdittext.requestFocus();
             return;
         }
 
-        Map<String,Object> userMap = new HashMap<>();
+        if(NDD.isEmpty()){
+            NextDateDayEdittext.setError("Can't be empty");
+            NextDateDayEdittext.requestFocus();
+            return;
+        }
 
-        userMap.put("Assigned Lawyer",assigned_lawyer_name);
-        userMap.put("Hearing Date",hearing_date_text);
-        userMap.put("Next Date",next_date);
-        userMap.put("What happened in court",what_happened_in_court);
+        if(NDM.isEmpty()){
+            NextDateMonthEdittext.setError("Can't be empty");
+            NextDateMonthEdittext.requestFocus();
+            return;
+        }
+
+        if(NDY.isEmpty()){
+            NextDateYearEdittext.setError("Can't be empty");
+            NextDateYearEdittext.requestFocus();
+            return;
+        }
+
+        CaseInformation caseInformation = new CaseInformation();
+
+        caseInformation.hearingDate = convertDateStringToMillis(FullHearingDate);
+        caseInformation.assignedLawyer = assigned_lawyer_name;
+        caseInformation.whatHappenedInCourt = what_happened_in_court;
+        caseInformation.nextHearingDate = convertDateStringToMillis(FullNextHearingDate);
 
         progressDialog.show();
+        progressDialog.setCancelable(false);
 
-        String uID = mAuth.getCurrentUser().getUid();
+        firestore.collection("Cases").document(caseID)
+                .collection("Information").add(caseInformation)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
 
+                        Toast.makeText(CourtScenes.this,"Information Stored",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(CourtScenes.this,LawyerProfileActivity.class));
+                        progressDialog.cancel();
 
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-        firestore.collection("Lawyers").document(uID)
-                .collection("Clients").document(mAuth.getCurrentUser().getUid())
-                .collection("Court Scenes").add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-
-                Toast.makeText(CourtScenes.this,"Information Added",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CourtScenes.this, LawyerProfileActivity.class));
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Toast.makeText(CourtScenes.this,"Some error occured, Please try again",Toast.LENGTH_SHORT).show();
-
-            }
-        });
+                        Toast.makeText(CourtScenes.this,"Failed",Toast.LENGTH_SHORT).show();
+                        progressDialog.cancel();
 
 
-
+                    }
+                });
 
 
     }
 
+    private long convertDateStringToMillis(String dateString) {
+        String pattern = "dd MMMM yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
+        try {
+            Date date = simpleDateFormat.parse(dateString);
+            return date.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
+    private String convertMillisToDateString(long millis) {
+        String pattern = "dd MMMM yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
+        return simpleDateFormat.format(new Date(millis));
+    }
 }

@@ -31,15 +31,19 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
         android:id="@+id/laywer_name_layout"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="10dp"
+        >
 
         <EditText
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:inputType="textCapWords"
@@ -54,15 +58,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_name_layout"
         android:id="@+id/laywer_phone_layout"
-        android:layout_marginTop="3dp">
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="10dp">
 
         <EditText
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:inputType="phone"
@@ -79,15 +86,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_phone_layout"
         android:id="@+id/laywer_email_layout"
-        android:layout_marginTop="3dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:inputType="textEmailAddress"
@@ -104,15 +114,18 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_email_layout"
         android:id="@+id/laywer_password_layout"
-        android:layout_marginTop="3dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:inputType="textPassword"
@@ -127,14 +140,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_password_layout"
-        android:id="@+id/lawyer_aadhar_number_layout">
+        android:id="@+id/lawyer_aadhar_number_layout"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="13dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:id="@+id/lawyer_aadhar"
@@ -159,7 +176,7 @@
         android:textStyle="bold"
         android:id="@+id/registercheckbox"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textColor="@color/colorPrimaryDark"/>
 
     <RelativeLayout

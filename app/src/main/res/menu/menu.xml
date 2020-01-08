@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/notifications"
-        android:title="Notifications"
+    <item android:id="@+id/refresh"
+        android:title="Refresh"
         app:showAsAction="never"
         android:icon="@drawable/notification_icon"/>
 

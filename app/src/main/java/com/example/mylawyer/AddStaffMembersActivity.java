@@ -1,33 +1,28 @@
 package com.example.mylawyer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Addstaffmembers extends AppCompatActivity {
+public class AddStaffMembersActivity extends AppCompatActivity {
 
     androidx.appcompat.widget.Toolbar add_staff_toolbar;
     Spinner member_posts;
@@ -96,7 +91,7 @@ public class Addstaffmembers extends AppCompatActivity {
         }
 
         if(post.equals("Select a post")){
-            Toast.makeText(Addstaffmembers.this,"Please select a post",Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddStaffMembersActivity.this,"Please select a post",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -128,7 +123,8 @@ public class Addstaffmembers extends AppCompatActivity {
 
         progressDialog.show();
 
-        firestore.collection("Lawyers").document(userID).collection("Staff Members").add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        firestore.collection("Lawyers").document(userID).collection("Staff Members")
+                .add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
 

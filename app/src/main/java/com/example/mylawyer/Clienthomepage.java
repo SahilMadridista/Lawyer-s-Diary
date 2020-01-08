@@ -1,11 +1,15 @@
 package com.example.mylawyer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +21,7 @@ public class Clienthomepage extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
     private String phonewithoutISD;
-
+    private TextView phoneText;
     Button sign_out;
 
     @Override
@@ -28,38 +32,34 @@ public class Clienthomepage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         sign_out = (Button)findViewById(R.id.sign_out_button);
+        phoneText = (TextView)findViewById(R.id.phoneText);
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
+                finish();
+                startActivity(new Intent(Clienthomepage.this,MainActivity.class));
             }
         });
 
-        //phonewithoutISD = getIntent().getExtras().getString("phoneWithoutISD");
+        phonewithoutISD = getIntent().getExtras().getString("phoneWithoutISD");
 
-        identifyClient();
+        phoneText.setText(phonewithoutISD);
 
-    }
-
-    private void identifyClient() {
-
-        firestore.collection("Lawyer Clients").whereEqualTo("Phone",phonewithoutISD).get()
+        firestore.collection("Cases").whereEqualTo("clientId",phonewithoutISD).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                         if(task.isSuccessful()){
 
-                            //functionForDataRetreiving();
-
-                            Toast.makeText(Clienthomepage.this,"Identified",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Clienthomepage.this,"Matched",Toast.LENGTH_SHORT).show();
 
                         }
-                        else {
+                        else{
 
-                            Toast.makeText(Clienthomepage.this,"You are not a client of any Lawyer",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Clienthomepage.this,"Number not Matched",Toast.LENGTH_SHORT).show();
 
                         }
 

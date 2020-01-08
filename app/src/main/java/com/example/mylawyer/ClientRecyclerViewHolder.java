@@ -42,7 +42,7 @@ public class ClientRecyclerViewHolder extends RecyclerView.ViewHolder {
         add_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                casesModifier.addDetails(clientCase.clientName, clientCase.startTime);
+                casesModifier.addDetails(clientCase.clientName, clientCase.startTime, clientCase.caseId);
 
             }
         });
