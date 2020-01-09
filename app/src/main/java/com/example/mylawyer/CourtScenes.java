@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mylawyer.model.CaseInformation;
+import com.example.mylawyer.utils.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -79,10 +80,11 @@ public class CourtScenes extends AppCompatActivity{
         });
 
         Client_Name = getIntent().getExtras().getString("Client Name");
-        //Client_Case_Start_Date = getIntent().getExtras().getString("Start Date");
+        long caseStartDateInSeconds = getIntent().getExtras().getLong("Start Date");
 
         client_name.setText(Client_Name);
-        //start_date.setText(Client_Case_Start_Date);
+        start_date = findViewById(R.id.case_start_date_add_scene);
+        start_date.setText(Utils.convertMillisToDateString(caseStartDateInSeconds*1000));
 
     }
 

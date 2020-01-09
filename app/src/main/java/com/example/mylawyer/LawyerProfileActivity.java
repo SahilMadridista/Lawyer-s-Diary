@@ -166,7 +166,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
         adddetailsactivityintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         adddetailsactivityintent.putExtra("Client Name", clientName);
-        adddetailsactivityintent.putExtra("Start Date", startTime);
+        adddetailsactivityintent.putExtra("Start Date", startTime.getSeconds());
         adddetailsactivityintent.putExtra("CaseID",caseID);
 
         startActivity(adddetailsactivityintent);
