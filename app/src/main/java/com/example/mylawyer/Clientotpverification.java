@@ -2,6 +2,7 @@ package com.example.mylawyer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mylawyer.consts.SharedPrefConstants;
 import com.example.mylawyer.model.Client;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,8 +57,10 @@ public class Clientotpverification extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
+
         progressDialog.setTitle("Logging in");
         progressDialog.setMessage("Just a moment...");
+        progressDialog.setCancelable(false);
 
         otp_edittext = (EditText)findViewById(R.id.otp_edittext);
         verify_button = (Button)findViewById(R.id.verify_button);
@@ -88,11 +92,11 @@ public class Clientotpverification extends AppCompatActivity {
 
                 progressDialog.show();
                 verifyOTPcode(code);
+
             }
         });
 
     }
-
 
     private void verifyOTPcode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSentToUser , code);
@@ -109,25 +113,6 @@ public class Clientotpverification extends AppCompatActivity {
 
                             progressDialog.show();
 
-//                            clientuserID = mAuth.getCurrentUser().getUid();
-//
-//                            DocumentReference documentReference = firestore.collection("Clients").document(clientuserID);
-//
-//                            Map<String,Object> user = new HashMap<>();
-//                            user.put("Name",name);
-//                            user.put("Phone",phone);
-//
-//                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    Toast.makeText(getApplicationContext(),"Profile Created",Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                            progressDialog.cancel();
-//
-//                            Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
-//                            finish();
-
                             Client clientinfo = new Client();
 
                             clientinfo.clientName = name;
@@ -142,13 +127,19 @@ public class Clientotpverification extends AppCompatActivity {
 
                                     //Toast.makeText(Clientotpverification.this, "Logged In Successfully",Toast.LENGTH_SHORT).show();
 
+                                    SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putInt("login", SharedPrefConstants.CLIENT_LOGIN);
+                                    editor.putString("Name",name);
+                                    editor.putString("PhoneNumber",phonewithoutISD);
+                                    editor.apply();
+
+                                    Intent intent = new Intent(Clientotpverification.this,Clienthomepage.class);
+                                    startActivity(intent);
+                                    finish();
+
                                 }
                             });
-
-                            Intent intent = new Intent(Clientotpverification.this,Clienthomepage.class);
-                            intent.putExtra("phoneWithoutISD",phonewithoutISD);
-                            startActivity(intent);
-
 
                         }
                         else {
@@ -187,6 +178,7 @@ public class Clientotpverification extends AppCompatActivity {
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             codeSentToUser =  s;
+            progressDialog.show();
 
             //OTP that is sent to the user
         }

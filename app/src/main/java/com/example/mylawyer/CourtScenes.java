@@ -19,10 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import static com.example.mylawyer.utils.Utils.convertDateStringToMillis;
 
 public class CourtScenes extends AppCompatActivity{
 
@@ -188,24 +185,5 @@ public class CourtScenes extends AppCompatActivity{
                 });
 
 
-    }
-
-    private long convertDateStringToMillis(String dateString) {
-        String pattern = "dd MMMM yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
-        try {
-            Date date = simpleDateFormat.parse(dateString);
-            return date.getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return -1;
-    }
-
-    private String convertMillisToDateString(long millis) {
-        String pattern = "dd MMMM yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
-        return simpleDateFormat.format(new Date(millis));
     }
 }

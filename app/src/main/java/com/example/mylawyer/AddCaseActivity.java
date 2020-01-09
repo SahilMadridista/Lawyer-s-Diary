@@ -36,12 +36,12 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
     private FirebaseFirestore firestore;
     private ProgressDialog progressDialog;
     private Timestamp caseStartTime;
-    String LawyerName,LawyerID;
+    String LawyerName,LawyerID,LawyerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addclient);
+        setContentView(R.layout.activity_addcase);
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -60,6 +60,8 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
 
         LawyerName = getIntent().getExtras().getString("Lawyer_Name");
         LawyerID = getIntent().getExtras().getString("Lawyer_Id");
+        LawyerEmail = getIntent().getExtras().getString("Lawyer_Email");
+
 
         add_client_button = (Button)findViewById(R.id.add_client_button);
         choose_date_button = (Button)findViewById(R.id.choose_date_button);
@@ -146,6 +148,7 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
         clientCase.clientAadhar = client_aadhar_number;
         clientCase.lawyerName = LawyerName;
         clientCase.lawyerId = LawyerID;
+        clientCase.lawyerEmail = LawyerEmail;
 
         final DocumentReference ref = firestore.collection("Cases").document();
 
@@ -180,11 +183,11 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
     public void onDateSet(DatePicker datePicker, int year, int month, int dayofmonth) {
 
         Calendar c = Calendar.getInstance();
-        caseStartTime = new Timestamp(c.getTimeInMillis()/1000, 0);
-
         c.set(Calendar.DAY_OF_MONTH,dayofmonth);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.YEAR,year);
+
+        caseStartTime = new Timestamp(c.getTimeInMillis()/1000, 0);
 
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 

@@ -13,13 +13,13 @@ import com.example.mylawyer.model.Case;
 
 import java.util.ArrayList;
 
-public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecyclerViewHolder>{
+public class LawyerCaseRecyclerViewAdapter extends RecyclerView.Adapter<LawyerCaseRecyclerViewHolder>{
 
     private Context context;
     private ArrayList<Case> casesArrayList;
     private CasesModifier casesModifier;
 
-    public CaseRecyclerViewAdapter(Context context, ArrayList<Case> casesArrayList, CasesModifier casesModifier){
+    public LawyerCaseRecyclerViewAdapter(Context context, ArrayList<Case> casesArrayList, CasesModifier casesModifier){
         this.context = context;
         this.casesArrayList = casesArrayList;
         this.casesModifier = casesModifier;
@@ -27,14 +27,14 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecycler
 
     @NonNull
     @Override
-    public ClientRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LawyerCaseRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.single_client_layout,parent,false);
-        return new ClientRecyclerViewHolder(view, casesModifier);
+        return new LawyerCaseRecyclerViewHolder(view, casesModifier);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ClientRecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final LawyerCaseRecyclerViewHolder holder, final int position) {
         holder.bind(casesArrayList.get(position));
     }
 

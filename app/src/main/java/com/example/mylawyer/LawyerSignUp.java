@@ -3,6 +3,7 @@ package com.example.mylawyer;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -18,11 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mylawyer.consts.SharedPrefConstants;
 import com.example.mylawyer.model.Lawyer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -190,12 +191,17 @@ public class LawyerSignUp extends AppCompatActivity {
                             lawyer.lawyerAadhar = aadhar;
                             lawyer.lowerCaseName = name.toLowerCase();
 
-                            startActivity(new Intent(LawyerSignUp.this, LawyerProfileActivity.class));
                             documentReference.set(lawyer).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getApplicationContext(),"Profile Created",Toast.LENGTH_SHORT).show();
 
+                                    SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putInt("login", SharedPrefConstants.LAWYER_LOGIN);
+                                    editor.apply();
+
+                                    startActivity(new Intent(LawyerSignUp.this, LawyerProfileActivity.class));
                                 }
                             });
 

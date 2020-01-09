@@ -2,7 +2,9 @@ package com.example.mylawyer;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,9 +14,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mylawyer.consts.SharedPrefConstants;
 import com.example.mylawyer.interfaces.CasesModifier;
 import com.example.mylawyer.model.Case;
 import com.example.mylawyer.model.Lawyer;
@@ -47,12 +51,10 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
     private String userID;
     RecyclerView clientInfoRecyclerView;
     FirebaseFirestore firestore;
-    CaseRecyclerViewAdapter adapter;
-    ArrayList<Clientmembers> clientmembersArrayList  = new ArrayList<>();
-    androidx.appcompat.widget.Toolbar lawyer_profile_toolbar;
+    LawyerCaseRecyclerViewAdapter adapter;
+    Toolbar lawyer_profile_toolbar;
     private ArrayList<Case> casesInformationList;
-    AlertDialog.Builder builder;
-    String Lawyer_Name, Lawyer_ID;
+    String Lawyer_Name, Lawyer_ID, Lawyer_Email;
 
 
     // Starting of OnCreate
@@ -70,7 +72,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
         profile_phone = (TextView)findViewById(R.id.profile_phone);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-        builder = new AlertDialog.Builder(LawyerProfileActivity.this);
+        //builder = new AlertDialog.Builder(LawyerProfileActivity.this);
 
         clientInfoRecyclerView = (RecyclerView)findViewById(R.id.client_info_recycler_view);
         clientInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -109,6 +111,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
                 Lawyer_Name = profile_name.getText().toString().trim();
                 Lawyer_ID = profile_phone.getText().toString().trim();
+                Lawyer_Email = profile_email.getText().toString().trim();
 
                 //LawyerProfileActivityProgressDialog.cancel();
 
@@ -117,27 +120,6 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
         // End - Displaying user info on the profile page
 
-//        Random random =  new Random();
-//        for(int i = 0;i<2;i++){
-//
-//
-//            Map<String,String> dataMap = new HashMap<>();
-//
-//            dataMap.put("Name", "" + random.nextInt(50));
-//            dataMap.put("Post", "" + random.nextInt(50));
-//            dataMap.put("Phone", "" + random.nextInt(50));
-//
-//            firestore.collection("Lawyers").document(userID).collection("Clients")
-//                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-//
-////                            Toast.makeText(StaffInformation.this,"Opening Staff List",Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                    });
-//
-//        }
 
        showData();
 
@@ -155,7 +137,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
                 casesInformationList = new ArrayList<>();
 
-                adapter = new CaseRecyclerViewAdapter(
+                adapter = new LawyerCaseRecyclerViewAdapter(
                         LawyerProfileActivity.this, casesInformationList, LawyerProfileActivity.this);
                 clientInfoRecyclerView.setAdapter(adapter);
 
@@ -194,61 +176,38 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
     @Override
     public void deleteSelectedCase(final String caseId) {
 
-//        builder.setMessage("Do you really want to delete this case ?")
-//                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                firestore.collection("Cases").document(caseId).delete()
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                firestore.collection("Lawyers").document(userID)
-//                                        .update("clientsCasesList", FieldValue.arrayRemove(caseId))
-//                                        .addOnSuccessListener(
-//                                                new OnSuccessListener<Void>() {
-//                                                    @Override
-//                                                    public void onSuccess(Void aVoid) {
-//                                                        Toast.makeText(LawyerProfileActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-//                                                        casesInformationList.remove(getCaseIndex(casesInformationList, caseId));
-//                                                        adapter.notifyDataSetChanged();
-//                                                    }
-//                                                }
-//                                        );
-//                            }
-//                        });
-//
-//            }
-//        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//
-//                dialogInterface.cancel();
-//
-//
-//            }
-//        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(LawyerProfileActivity.this);
+        builder.setMessage("Do you really want to delete this case ?")
+                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
+                firestore.collection("Cases").document(caseId).delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                firestore.collection("Lawyers").document(userID)
+                                        .update("clientsCasesList", FieldValue.arrayRemove(caseId))
+                                        .addOnSuccessListener(
+                                                new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Toast.makeText(LawyerProfileActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                                        casesInformationList.remove(getCaseIndex(casesInformationList, caseId));
+                                                        adapter.notifyDataSetChanged();
+                                                    }
+                                                }
+                                        );
+                            }
+                        });
 
-        firestore.collection("Cases").document(caseId).delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        firestore.collection("Lawyers").document(userID)
-                                .update("clientsCasesList", FieldValue.arrayRemove(caseId))
-                                .addOnSuccessListener(
-                                        new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(LawyerProfileActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                                                casesInformationList.remove(getCaseIndex(casesInformationList, caseId));
-                                                adapter.notifyDataSetChanged();
-                                            }
-                                        }
-                                );
-                    }
-                });
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        }).show();
     }
 
     // Start - Top 3 dots menu bar
@@ -292,11 +251,18 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
                 Intent intent = new Intent(LawyerProfileActivity.this,AddCaseActivity.class);
                 intent.putExtra("Lawyer_Name", Lawyer_Name);
                 intent.putExtra("Lawyer_Id", Lawyer_ID);
+                intent.putExtra("Lawyer_Email",Lawyer_Email);
                 startActivity(intent);
                 break;
 
             case R.id.sign_out:
                 mAuth.signOut();
+
+                SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("login", SharedPrefConstants.NO_LOGIN);
+                editor.apply();
+
                 startActivity(new Intent(LawyerProfileActivity.this,MainActivity.class));
                 finish();
 

@@ -9,7 +9,7 @@ public class Lawyer {
     public String lawyerEmail;
     public String lawyerAadhar;
     public String lowerCaseName;
-    public ArrayList<String> clientsCasesList;         //jhefghjtyhtrgr
+    public ArrayList<String> clientsCasesList = new ArrayList<>();         //jhefghjtyhtrgr
 
     public String getName() {
         return name;

@@ -1,11 +1,15 @@
 package com.example.mylawyer;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mylawyer.consts.SharedPrefConstants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,17 +32,30 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
+        SharedPreferences preferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+        final int loginStatus = preferences.getInt("login", SharedPrefConstants.NO_LOGIN);
+
         lawyer_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LawyerSignUp.class));
+                if (loginStatus == SharedPrefConstants.CLIENT_LOGIN) {
+                    Toast.makeText(MainActivity.this, "Client logged in", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(MainActivity.this, LawyerSignUp.class));
+                    finish();
+                }
             }
         });
 
         client_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,ClientSignup.class));
+                if (loginStatus == SharedPrefConstants.LAWYER_LOGIN) {
+                    Toast.makeText(MainActivity.this, "Lawyer logged in", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(MainActivity.this, ClientSignup.class));
+                    finish();
+                }
             }
         });
 

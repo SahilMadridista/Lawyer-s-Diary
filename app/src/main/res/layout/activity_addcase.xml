@@ -113,13 +113,14 @@
 
     <EditText
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/edittext_background"
         android:layout_centerHorizontal="true"
         android:id="@+id/client_case_about_edittext"
         android:layout_below="@id/client_aadhar_number_layout"
         android:hint="Case Description"
+        android:inputType="textCapSentences"
         android:singleLine="false"
         android:textSize="13dp"
         android:gravity="start"
