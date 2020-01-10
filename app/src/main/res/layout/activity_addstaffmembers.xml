@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/add_members_toolbar"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:id="@+id/fullname_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -38,22 +38,21 @@
             android:layout_below="@id/add_members_toolbar"
             android:drawableLeft="@drawable/name_icon"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:paddingLeft="@dimen/_10sdp"
-            android:textSize="@dimen/_13sdp"
-            android:drawablePadding="@dimen/_10sdp"
-            android:paddingRight="@dimen/_10sdp"/>
+            android:paddingLeft="10dp"
+            android:textSize="13dp"
+            android:drawablePadding="10dp"
+            android:paddingRight="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="@dimen/_10sdp"
+        android:paddingLeft="10dp"
         android:id="@+id/staff_member_post_spinner"
         android:layout_below="@id/fullname_layout"/>
 
@@ -61,9 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@id/staff_member_post_spinner"
         android:id="@+id/phone_number_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -75,13 +74,12 @@
             android:id="@+id/member_phone"
             android:hint="Phone Number"
             android:drawableLeft="@drawable/phone_icon"
-            android:layout_marginTop="@dimen/_30sdp"
             android:layout_centerHorizontal="true"
-            android:paddingRight="@dimen/_10sdp"
-            android:textSize="@dimen/_13sdp"
+            android:paddingRight="10dp"
+            android:textSize="13dp"
             android:layout_below="@id/staff_member_post_spinner"
-            android:paddingLeft="@dimen/_10sdp"
-            android:drawablePadding="@dimen/_10sdp"/>
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,9 +89,9 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/phone_number_layout"
         android:id="@+id/aadhar_number_layout"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="15dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
@@ -104,11 +102,11 @@
             android:hint="Aadhar Number"
             android:drawableLeft="@drawable/aadhar_icon"
             android:layout_centerHorizontal="true"
-            android:paddingRight="@dimen/_10sdp"
-            android:textSize="@dimen/_13sdp"
+            android:paddingRight="10dp"
+            android:textSize="13dp"
             android:layout_below="@id/staff_member_post_spinner"
-            android:paddingLeft="@dimen/_10sdp"
-            android:drawablePadding="@dimen/_10sdp"/>
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,11 +120,5 @@
         android:id="@+id/addmemberbutton"
         android:textColor="@color/white"
         android:textAllCaps="false"/>
-
-
-
-
-
-
 
 </RelativeLayout>

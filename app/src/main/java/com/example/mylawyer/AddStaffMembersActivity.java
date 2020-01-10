@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,8 +30,6 @@ public class AddStaffMembersActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     FirebaseFirestore firestore;
-//    private static final int PICK_IMAGE=1;
-//    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +130,8 @@ public class AddStaffMembersActivity extends AppCompatActivity {
                 progressDialog.cancel();
 
                 phone_edit_text.setText(null);
-                name_edit_text.setText(null);
                 staff_aadhar_edit_text.setText(null);
+                name_edit_text.setText(null);
 
 
             }

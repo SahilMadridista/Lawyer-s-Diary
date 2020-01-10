@@ -99,6 +99,7 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
         final String caseDescription = case_about.getText().toString().trim();
         final String date = date_text.getText().toString().trim();
         final String phone = client_phone.getText().toString().trim();
+        final String lowercasename = client_name.getText().toString().toLowerCase().trim();
         final String client_aadhar_number = client_aadhar.getText().toString().trim();
         //String userID = mAuth.getCurrentUser().getUid();
         final ArrayList<Integer> caseIdList = new ArrayList<>();
@@ -149,6 +150,7 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
         clientCase.lawyerName = LawyerName;
         clientCase.lawyerId = LawyerID;
         clientCase.lawyerEmail = LawyerEmail;
+        clientCase.clientNameLowerCase = lowercasename;
 
         final DocumentReference ref = firestore.collection("Cases").document();
 

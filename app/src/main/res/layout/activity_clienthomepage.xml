@@ -30,7 +30,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:paddingBottom="@dimen/_10sdp">
+            android:paddingBottom="5dp"
+            android:layout_marginRight="0.1dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -39,15 +40,15 @@
                 android:text="Your Name"
                 android:id="@+id/nameHeading"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_4sdp"/>
+                android:textSize="13sp"
+                android:layout_marginTop="3dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Sahil Singh"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="20sp"
                 android:layout_below="@id/nameHeading"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
@@ -60,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginLeft="0.1dp"
             android:background="@color/colorPrimaryDark">
 
             <TextView
@@ -68,15 +70,15 @@
                 android:text="Phone Number"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="13dp"
                 android:id="@+id/phoneHeading"
-                android:layout_marginTop="@dimen/_4sdp"/>
+                android:layout_marginTop="3dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8419065279"
-                android:textSize="@dimen/_19sdp"
+                android:textSize="20sp"
                 android:layout_below="@id/phoneHeading"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
@@ -90,15 +92,16 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_below="@id/namephonelayout"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        android:id="@+id/part"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/namephonelayout"
+        android:layout_below="@id/part"
         android:id="@+id/yourCasesText"
         android:text="Your Cases"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="17sp"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:background="@color/colorPrimaryDark"/>

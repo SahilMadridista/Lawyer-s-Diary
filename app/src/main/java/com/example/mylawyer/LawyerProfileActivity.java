@@ -6,16 +6,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mylawyer.consts.SharedPrefConstants;
 import com.example.mylawyer.interfaces.CasesModifier;
 import com.example.mylawyer.model.Case;
@@ -31,7 +35,10 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+
 import javax.annotation.Nullable;
 
 public class LawyerProfileActivity extends AppCompatActivity implements CasesModifier {
@@ -41,13 +48,14 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
     FirebaseAuth mAuth;
     TextView profile_name,profile_email,profile_phone;
     private FirebaseDatabase mFirebaseDatabase;
-    private ProgressDialog LawyerProfileActivityProgressDialog;
+    private ProgressDialog LawyerProfileActivityProgressDialog,pd;
     private DatabaseReference myref;
     private String userID;
     RecyclerView clientInfoRecyclerView;
     FirebaseFirestore firestore;
     LawyerCaseRecyclerViewAdapter adapter;
     Toolbar lawyer_profile_toolbar;
+    private ArrayList<Case> searchedcases;
     private ArrayList<Case> casesInformationList;
     String Lawyer_Name, Lawyer_ID, Lawyer_Email;
 
@@ -82,11 +90,10 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
         // ProgressDialog stuff start
 
         LawyerProfileActivityProgressDialog = new ProgressDialog(this);
+        pd = new ProgressDialog(this);
         LawyerProfileActivityProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         LawyerProfileActivityProgressDialog.setCancelable(false);
-        LawyerProfileActivityProgressDialog.setTitle("Loading information");
-        LawyerProfileActivityProgressDialog.setMessage("Just a moment...");
-        LawyerProfileActivityProgressDialog.show();
+        pd.setCancelable(false);
 
         // ProgressDialog stuff ended
 
@@ -126,6 +133,9 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
     public void showData() {
 
+        pd.setTitle("Loading information");
+        pd.setMessage("Just a moment...");
+        pd.show();
 
         firestore.collection("Lawyers").document(userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -146,6 +156,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
                                     synchronized (casesInformationList) {
                                         casesInformationList.add(documentSnapshot.toObject(Case.class));
                                         adapter.notifyItemInserted(casesInformationList.size()-1);
+                                        pd.dismiss();
                                     }
                                 }
                             }
@@ -155,6 +166,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
         });
 
         LawyerProfileActivityProgressDialog.cancel();
+
     }
 
     @Override
@@ -188,7 +200,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LawyerProfileActivity.this);
         builder.setMessage("Do you really want to delete this case ?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setCancelable(true).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -226,7 +238,93 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
-        return true;
+
+        MenuItem menuItem = menu.findItem(R.id.searchcase);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Client's Name");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                //Called when we press search button
+
+                searchClient(s);
+                return false;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                //Called when we change the text
+
+                if(s.isEmpty()){
+                    showData();
+                }
+
+                return false;
+
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void searchClient(String s) {
+
+        LawyerProfileActivityProgressDialog.setTitle("Searching");
+        LawyerProfileActivityProgressDialog.setMessage("Just a moment...");
+        LawyerProfileActivityProgressDialog.show();
+
+        firestore.collection("Cases").whereEqualTo("clientNameLowerCase",s.toLowerCase())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        final ArrayList<String> casesIdList = new ArrayList<>();
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                            casesIdList.add(documentSnapshot.toObject(Case.class).caseId);
+                        }
+
+                        Log.v("Client cases", casesIdList.toString());
+
+                        if(casesIdList.isEmpty()) {
+                            Toast.makeText(LawyerProfileActivity.this, "You are not a client of any lawyer",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        searchedcases = new ArrayList<>();
+
+                        clientInfoRecyclerView.setLayoutManager(new LinearLayoutManager(LawyerProfileActivity.this));
+
+                        adapter = new LawyerCaseRecyclerViewAdapter(LawyerProfileActivity.this,
+                                searchedcases,LawyerProfileActivity.this);
+                        clientInfoRecyclerView.setAdapter(adapter);
+
+                        LawyerProfileActivityProgressDialog.dismiss();
+
+                        for (String caseId : casesIdList) {
+                            firestore.collection("Cases").document(caseId).get().addOnSuccessListener(
+                                    new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            synchronized (searchedcases) {
+                                                searchedcases.add(documentSnapshot.toObject(Case.class));
+                                                adapter.notifyItemInserted(searchedcases.size()-1);
+                                                Toast.makeText(LawyerProfileActivity.this,
+                                                        "Number of cases found with this name : " +
+                                                                casesIdList.size(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }
+                            );
+                        }
+
+                    }
+                });
+
+
     }
 
     @Override

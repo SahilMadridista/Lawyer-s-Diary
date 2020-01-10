@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CaseHistory">
+    tools:context=".CaseHistory"
+    android:background="@color/colorPrimaryDark">
 
     <androidx.appcompat.widget.Toolbar
 
@@ -18,16 +19,22 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.3dp"
+        android:background="@color/white"
+        android:layout_below="@id/case_history_toolbar"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_17sdp"
+        android:textSize="20sp"
         android:id="@+id/headerText"
         android:text="All case history"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/case_history_toolbar"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -35,6 +42,7 @@
         android:layout_below="@id/headerText"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/caseHistoryRecyclerView"
         android:layout_alignParentBottom="true">
 

@@ -4,10 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +28,6 @@ public class CourtScenes extends AppCompatActivity{
 
     androidx.appcompat.widget.Toolbar court_scenes_toolbar;
     String Client_Name;
-    String Client_Case_Start_Date;
     TextView client_name,start_date;
     Button add_information;
     EditText AssignedLawyerEdittext, WhatHappenedinCourtEdittext;
@@ -36,6 +38,7 @@ public class CourtScenes extends AppCompatActivity{
     private ProgressDialog progressDialog;
     String HDD,HDM,HDY;
     String NDD,NDM,NDY;
+    Spinner HDmonthSpinner,NDmonthSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +63,28 @@ public class CourtScenes extends AppCompatActivity{
         WhatHappenedinCourtEdittext = (EditText)findViewById(R.id.what_happened_edittext);
 
         HearingDateDayEdittext = (EditText)findViewById(R.id.HearingDateDay);
-        HearingDateMonthEdittext = (EditText)findViewById(R.id.HearingDateMonth);
+        //HearingDateMonthEdittext = (EditText)findViewById(R.id.HearingDateMonth);
         HearingDateYearEdittext = (EditText)findViewById(R.id.HearingDateYear);
 
         NextDateDayEdittext = (EditText)findViewById(R.id.NextDateDay);
-        NextDateMonthEdittext = (EditText)findViewById(R.id.NextDateMonth);
+        //NextDateMonthEdittext = (EditText)findViewById(R.id.NextDateMonth);
         NextDateYearEdittext = (EditText)findViewById(R.id.NextDateYear);
+
+        HDmonthSpinner = (Spinner)findViewById(R.id.hearingdatemonthspinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.months, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        HDmonthSpinner.setAdapter(adapter);
+
+        NDmonthSpinner = (Spinner)findViewById(R.id.nextdatemonthspinner);
+
+        ArrayAdapter<CharSequence> secondadapter = ArrayAdapter.createFromResource(this,
+                R.array.months, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        NDmonthSpinner.setAdapter(secondadapter);
+
+
 
 
         add_information = (Button)findViewById(R.id.add_info_button);
@@ -90,11 +109,11 @@ public class CourtScenes extends AppCompatActivity{
     private void addInformation() {
 
         HDD = HearingDateDayEdittext.getText().toString().trim();
-        HDM = HearingDateMonthEdittext.getText().toString().trim();
+        HDM = HDmonthSpinner.getSelectedItem().toString().trim();
         HDY = HearingDateYearEdittext.getText().toString().trim();
 
         NDD = NextDateDayEdittext.getText().toString().trim();
-        NDM = NextDateMonthEdittext.getText().toString().trim();
+        NDM = NDmonthSpinner.getSelectedItem().toString().trim();
         NDY = NextDateYearEdittext.getText().toString().trim();
 
         String caseID = getIntent().getExtras().getString("CaseID");
@@ -116,9 +135,8 @@ public class CourtScenes extends AppCompatActivity{
             return;
         }
 
-        if(HDM.isEmpty()){
-            HearingDateMonthEdittext.setError("Can't be empty");
-            HearingDateMonthEdittext.requestFocus();
+        if(HDM.equals("Month")){
+            Toast.makeText(this,"Please select a month",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -141,9 +159,8 @@ public class CourtScenes extends AppCompatActivity{
             return;
         }
 
-        if(NDM.isEmpty()){
-            NextDateMonthEdittext.setError("Can't be empty");
-            NextDateMonthEdittext.requestFocus();
+        if(NDM.equals("Month")){
+            Toast.makeText(this,"Please select a month for next date",Toast.LENGTH_SHORT).show();
             return;
         }
 

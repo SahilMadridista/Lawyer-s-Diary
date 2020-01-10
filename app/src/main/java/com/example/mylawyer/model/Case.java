@@ -13,6 +13,7 @@ public class Case {
     public String caseDescription;
     public Timestamp startTime;
     public String caseId;
+    public String clientNameLowerCase;
     public String lawyerEmail;
 
 }

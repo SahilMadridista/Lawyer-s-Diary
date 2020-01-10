@@ -32,49 +32,49 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="13dp"
                 android:text="Client's Name"
                 android:textColor="@color/black"
                 android:id="@+id/client_name_header"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_13sdp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="13dp"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_17sdp"
+                android:textSize="20sp"
                 android:text="Name of Client"
                 android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/client_name_add_scene"
                 android:layout_below="@id/client_name_header"
-                android:layout_marginLeft="@dimen/_13sdp"
+                android:layout_marginLeft="13dp"
                 />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_below="@id/client_name_add_scene"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/first_view"
                 android:background="@color/gray"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
-                android:layout_marginLeft="@dimen/_13sdp"
+                android:textSize="13dp"
+                android:layout_marginLeft="13dp"
                 android:id="@+id/case_start_date_text"
                 android:text="Case Starting Date"
                 android:layout_below="@id/first_view"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_17sdp"
-                android:layout_marginLeft="@dimen/_13sdp"
+                android:textSize="20sp"
+                android:layout_marginLeft="13dp"
                 android:text="Starting Date"
                 android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/case_start_date_add_scene"
@@ -84,16 +84,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_below="@id/case_start_date_add_scene"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/second_view"
                 android:background="@color/gray"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_marginRight="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/second_view"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/assignedlawyerlayout"
@@ -102,10 +102,10 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="13dp"
                     android:drawableLeft="@drawable/name_icon"
-                    android:paddingLeft="@dimen/_7sdp"
-                    android:drawablePadding="@dimen/_7sdp"
+                    android:paddingLeft="10dp"
+                    android:drawablePadding="10dp"
                     android:id="@+id/assigned_lawyer"
                     android:hint="Lawyer Assigned"
                     android:inputType="textCapWords"/>
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_below="@id/assignedlawyerlayout"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/third_view"
                 android:background="@color/gray"/>
 
@@ -129,11 +129,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="13sp"
                     android:id="@+id/HearingDateText"
                     android:layout_marginTop="10dp"
                     android:text="Hearing Date"
-                    android:layout_marginLeft="@dimen/_13sdp"
+                    android:layout_marginLeft="13dp"
                     android:textColor="@color/black"/>
 
                 <LinearLayout
@@ -162,7 +162,8 @@
                                 android:hint="Day"
                                 android:id="@+id/HearingDateDay"
                                 android:inputType="number"
-                                android:paddingLeft="@dimen/_8sdp"/>
+                                android:paddingLeft="10dp"
+                                android:padding="10dp"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -172,7 +173,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.7"
                         android:layout_marginBottom="7dp">
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -182,13 +183,18 @@
                             android:layout_margin="10dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                            <EditText
+<!--                            <EditText-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:hint="Month"-->
+<!--                                android:id="@+id/HearingDateMonth"-->
+<!--                                android:inputType="textCapWords"-->
+<!--                                android:paddingLeft="@dimen/_8sdp"/>-->
+
+                            <Spinner
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Month"
-                                android:id="@+id/HearingDateMonth"
-                                android:inputType="textCapWords"
-                                android:paddingLeft="@dimen/_8sdp"/>
+                                android:layout_height="match_parent"
+                                android:id="@+id/hearingdatemonthspinner" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -214,7 +220,7 @@
                                 android:hint="Year"
                                 android:id="@+id/HearingDateYear"
                                 android:inputType="number"
-                                android:paddingLeft="@dimen/_8sdp"/>
+                                android:paddingLeft="10dp"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -236,9 +242,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/WhatHappenedInCourtLayout"
                 android:layout_below="@id/fourth_view"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
@@ -248,7 +254,8 @@
                     android:hint="What happened in court "
                     android:singleLine="false"
                     android:textSize="13sp"
-                    android:padding="@dimen/_6sdp"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
                     android:id="@+id/what_happened_edittext"
                     android:gravity="start"/>
 
@@ -259,15 +266,16 @@
                 android:layout_height="0.8dp"
                 android:layout_below="@id/WhatHappenedInCourtLayout"
                 android:id="@+id/fifth_view"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/gray"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fifth_view"
+                android:layout_marginTop="5dp"
                 android:id="@+id/NextDateRelativeLayout"
-                android:layout_marginBottom="@dimen/_20sdp">
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -315,7 +323,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.7"
                         android:layout_marginBottom="10dp">
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -325,13 +333,18 @@
                             android:layout_margin="10dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                            <EditText
+<!--                            <EditText-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:hint="Month"-->
+<!--                                android:id="@+id/NextDateMonth"-->
+<!--                                android:inputType="textCapWords"-->
+<!--                                android:paddingLeft="5dp"/>-->
+
+                            <Spinner
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Month"
-                                android:id="@+id/NextDateMonth"
-                                android:inputType="textCapWords"
-                                android:paddingLeft="5dp"/>
+                                android:layout_height="match_parent"
+                                android:id="@+id/nextdatemonthspinner" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -363,73 +376,13 @@
 
                     </RelativeLayout>
 
-
-
-
-
-
                 </LinearLayout>
-
-
-
 
             </RelativeLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </RelativeLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </ScrollView>
-
-
 
     <Button
         android:layout_width="match_parent"

@@ -24,7 +24,7 @@
         android:layout_below="@id/client_signup_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:textSize="@dimen/_17sdp"
+        android:textSize="17sp"
         android:id="@+id/header_text"
         android:textColor="@color/colorPrimaryDark"/>
 
@@ -35,8 +35,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
@@ -59,10 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/client_phone_layout"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:layout_below="@id/client_name_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -83,11 +83,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/client_phone_layout"
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_background_no_round"
         android:textColor="@color/white"
         android:id="@+id/verify_client_buton"

@@ -32,11 +32,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="17dp"
                 android:text="Add Details Here"
                 android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/header"
-                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginTop="5dp"
                 android:textAlignment="center"
                 android:layout_centerHorizontal="true"/>
 
@@ -46,9 +46,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/header"
                 android:id="@+id/client_name_layout"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_marginRight="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
@@ -57,12 +57,12 @@
                     android:inputType="textCapWords"
                     android:id="@+id/client_name_edit_text"
                     android:hint="Client Full Name"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="13sp"
                     android:drawableLeft="@drawable/name_icon"
                     android:layout_centerHorizontal="true"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"/>
+                    android:paddingLeft="10dp"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="10dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,23 +72,23 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/client_name_layout"
                 android:id="@+id/client_phone_layout"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="13sp"
                     android:id="@+id/client_phone_edit_text"
                     android:hint="Phone Number"
                     android:drawableLeft="@drawable/phone_icon"
                     android:layout_centerHorizontal="true"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"/>
+                    android:paddingLeft="10dp"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="10dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,11 +96,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 android:layout_below="@id/client_phone_layout"
                 android:id="@+id/client_aadhar_number_layout"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
@@ -110,13 +110,12 @@
                     android:id="@+id/client_aadhar_number"
                     android:hint="Aadhar Number"
                     android:drawableLeft="@drawable/aadhar_icon"
-                    android:layout_marginTop="@dimen/_30sdp"
                     android:layout_centerHorizontal="true"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:paddingRight="10dp"
+                    android:textSize="13sp"
                     android:layout_below="@id/staff_member_post_spinner"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:drawablePadding="@dimen/_10sdp"/>
+                    android:paddingLeft="10dp"
+                    android:drawablePadding="10dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,17 +123,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/_13sdp"
-                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 android:layout_below="@id/client_aadhar_number_layout"
                 android:id="@+id/case_desc_layout"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_130sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="vertical"
                     android:background="@drawable/edittext_background"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/client_case_about_edittext"
@@ -142,19 +142,17 @@
                     android:hint="Case Description"
                     android:inputType="textCapSentences"
                     android:singleLine="false"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="13sp"
                     android:gravity="start"
-                    android:padding="@dimen/_10sdp"
-                    android:lines="8"/>
-
-
+                    android:padding="15sp"
+                    android:lines="7"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/case_desc_layout"
                 android:layout_centerHorizontal="true"
@@ -164,8 +162,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:padding="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:padding="10dp"
+                    android:textSize="13dp"
                     android:id="@+id/date_text_view"
                     android:textColor="@color/colorPrimaryDark"
                     android:textAlignment="center"/>
@@ -182,11 +180,11 @@
                 android:layout_below="@id/date_layout"
                 android:background="@drawable/button_background_no_round"
                 android:text="Choose Case Starting Date"
-                android:padding="@dimen/_15sdp"
+                android:padding="15dp"
                 android:elevation="20dp"
                 android:id="@+id/choose_date_button"
                 android:textColor="@color/white"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="20dp"
                 android:textAllCaps="false"/>
 
         </RelativeLayout>

@@ -19,5 +19,24 @@
 
     <string name="app_name">My Lawyer</string>
 
+    <array name="months">
+
+        <item>Month</item>
+
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+
+    </array>
+
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.mylawyer;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,6 +53,11 @@ public class CaseHistory extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
+
+                        if(caseInformations.isEmpty()){
+                            Toast.makeText(CaseHistory.this,"There is no history for this case",Toast.LENGTH_SHORT)
+                                    .show();
+                        }
 
                     }
                 });

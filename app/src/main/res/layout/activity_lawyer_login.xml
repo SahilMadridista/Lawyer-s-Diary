@@ -24,8 +24,8 @@
         android:layout_below="@id/lawyer_login_toolbar"
         android:layout_centerHorizontal="true"
         android:id="@+id/header_text"
-        android:textSize="@dimen/_17sdp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/colorPrimaryDark"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:id="@+id/login_email_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -45,10 +45,10 @@
             android:inputType="textEmailAddress"
             android:id="@+id/email_login_edit_text"
             android:hint="Enter Email"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="13dp"
             android:drawableLeft="@drawable/name_icon"
-            android:paddingLeft="@dimen/_10sdp"
-            android:drawablePadding="@dimen/_10sdp"/>
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,10 +56,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:layout_below="@id/login_email_layout"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="10dp"
         android:id="@+id/login_password_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -69,10 +69,10 @@
             android:inputType="textPassword"
             android:id="@+id/password_login_edit_text"
             android:hint="Enter Password"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="13dp"
             android:drawableLeft="@drawable/password_icon"
-            android:paddingLeft="@dimen/_10sdp"
-            android:drawablePadding="@dimen/_10sdp"/>
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +83,7 @@
         android:id="@+id/login_checkbox"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/login_password_layout"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="25dp"
         android:textColor="@color/colorPrimaryDark"/>
 
     <Button
@@ -92,9 +92,9 @@
         android:background="@drawable/button_background_no_round"
         android:layout_below="@id/login_checkbox"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/_13sdp"
-        android:layout_marginRight="@dimen/_13sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="30dp"
         android:text="Log in"
         android:textAllCaps="false"
         android:id="@+id/login_button"

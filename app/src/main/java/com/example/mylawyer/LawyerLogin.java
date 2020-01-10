@@ -106,17 +106,19 @@ public class LawyerLogin extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        progressDialog.cancel();
+                        progressDialog.dismiss();
 
                         if(task.isSuccessful()){
+
+                            Toast.makeText(LawyerLogin.this,"You are Logged in",Toast.LENGTH_SHORT)
+                                    .show();
                             SharedPreferences preferences = getSharedPreferences("MyPref", MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putInt("login", SharedPrefConstants.LAWYER_LOGIN);
                             editor.apply();
 
                             startActivity(new Intent(getApplicationContext(), LawyerProfileActivity.class));
-                            Toast.makeText(LawyerLogin.this,"You are Logged in",Toast.LENGTH_SHORT)
-                                    .show();
+
                             finish();
 
                         } else{

@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     android:layout_height="wrap_content"
     android:elevation="20dp"
-    android:padding="@dimen/_3sdp"
+    android:padding="3dp"
     android:background="@color/colorPrimaryDark">
 
     <RelativeLayout
@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textIsSelectable="true"
             android:layout_marginTop="5dp"
             android:layout_below="@id/name_header"
             android:layout_centerHorizontal="true"
@@ -64,6 +65,7 @@
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Case Details"
+            android:textIsSelectable="true"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@id/case_about_header"
@@ -97,6 +99,7 @@
             android:text="Phone Number"
             android:layout_marginTop="5dp"
             android:textSize="20sp"
+            android:textIsSelectable="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/client_phone_text"
             android:textColor="@color/colorPrimaryDark"/>
@@ -125,6 +128,7 @@
             android:layout_height="wrap_content"
             android:text="Date"
             android:layout_marginTop="5dp"
+            android:textIsSelectable="true"
             android:textColor="@color/colorPrimaryDark"
             android:id="@+id/case_start_date"
             android:layout_centerHorizontal="true"
@@ -156,6 +160,7 @@
             android:layout_height="wrap_content"
             android:text="Number"
             android:layout_marginTop="5dp"
+            android:textIsSelectable="true"
             android:textColor="@color/colorPrimaryDark"
             android:id="@+id/client_aadhar_number_text"
             android:layout_below="@id/aadhar_header"

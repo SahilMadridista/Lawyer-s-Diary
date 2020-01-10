@@ -32,12 +32,11 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
 
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
-    private String phonewithoutISD,name;
+    private String phonewithoutISD, name;
     androidx.appcompat.widget.Toolbar chptoolbar;
     ClientCaseRecyclerViewAdapter adapter;
-    ArrayList<Case> clientCasesList;
     private ArrayList<Case> cases;
-    ProgressDialog progressDialogClientHomepage;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,37 +45,36 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
-        TextView phoneText = (TextView)findViewById(R.id.phoneText);
-        TextView nameText = (TextView)findViewById(R.id.nameText);
+        TextView phoneText = (TextView) findViewById(R.id.phoneText);
+        TextView nameText = (TextView) findViewById(R.id.nameText);
         chptoolbar = findViewById(R.id.client_homepage_toolbar);
         setSupportActionBar(chptoolbar);
         getSupportActionBar().setTitle("Lawyer's Diary");
-        progressDialogClientHomepage = new ProgressDialog(this);
-        progressDialogClientHomepage.setTitle("Searching for lawyer");
-        progressDialogClientHomepage.setMessage("It will take a moment");
-        progressDialogClientHomepage.setCancelable(false);
+        pd = new ProgressDialog(this);
+        pd.setCancelable(false);
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.client_homepage_recyclerview);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.client_homepage_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        name = getSharedPreferences("MyPref",MODE_PRIVATE).getString("Name","");
-
-        phonewithoutISD = getSharedPreferences("MyPref",MODE_PRIVATE).getString("PhoneNumber","");
+        name = getSharedPreferences("MyPref", MODE_PRIVATE).getString("Name", "");
+        phonewithoutISD = getSharedPreferences("MyPref", MODE_PRIVATE).getString("PhoneNumber", "");
 
         nameText.setText(name);
         phoneText.setText(phonewithoutISD);
 
-        progressDialogClientHomepage.show();
-
         showClientCases();
-
-        progressDialogClientHomepage.cancel();
 
     }
 
     private void showClientCases() {
 
-        firestore.collection("Cases").whereEqualTo("clientId",phonewithoutISD).get()
+
+        pd.setTitle("Searching for lawyer");
+        pd.setMessage("Just a moment...");
+        pd.show();
+
+        firestore.collection("Cases").whereEqualTo("clientId", phonewithoutISD).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -88,23 +86,25 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
                         firestore.collection("Clients").document(phonewithoutISD)
                                 .update("cases", casesIdList);
 
-                        Toast.makeText(Clienthomepage.this, "Data obtained: " +
-                                casesIdList.size() + " cases", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Clienthomepage.this, "Number of cases found : " +
+                                casesIdList.size(), Toast.LENGTH_SHORT).show();
                         Log.v("Client cases", casesIdList.toString());
 
-                        if(casesIdList.isEmpty()){
-                            Toast.makeText(Clienthomepage.this,"You are not a client of any lawyer",
+                        if (casesIdList.isEmpty()) {
+                            Toast.makeText(Clienthomepage.this, "You are not a client of any lawyer",
                                     Toast.LENGTH_SHORT).show();
                         }
 
 
                         cases = new ArrayList<>();
 
-                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.client_homepage_recyclerview);
+                        pd.dismiss();
+
+                        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.client_homepage_recyclerview);
                         recyclerView.setLayoutManager(new LinearLayoutManager(Clienthomepage.this));
 
                         adapter = new ClientCaseRecyclerViewAdapter(Clienthomepage.this,
-                                cases,Clienthomepage.this);
+                                cases, Clienthomepage.this);
                         recyclerView.setAdapter(adapter);
 
                         for (String caseId : casesIdList) {
@@ -114,7 +114,7 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             synchronized (cases) {
                                                 cases.add(documentSnapshot.toObject(Case.class));
-                                                adapter.notifyItemInserted(cases.size()-1);
+                                                adapter.notifyItemInserted(cases.size() - 1);
                                             }
                                         }
                                     }
@@ -129,18 +129,17 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.client_menu,menu);
-        return true;
+        inflater.inflate(R.menu.client_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.refresh:
-                //FunctionToRefreshData
-                //Toast.makeText(LawyerProfileActivity.this,"Notification Activity to be added if needed",Toast.LENGTH_SHORT).show();
+                showClientCases();
                 break;
 
             case R.id.sign_out:
@@ -150,8 +149,7 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
                 editor.putInt("login", SharedPrefConstants.NO_LOGIN);
                 editor.apply();
                 finish();
-                startActivity(new Intent(Clienthomepage.this,MainActivity.class));
-
+                startActivity(new Intent(Clienthomepage.this, MainActivity.class));
 
         }
 
@@ -183,7 +181,6 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
     @Override
     public void emailLawyer(String lawyerEmail) {
 
-        //Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",))
 
 
     }

@@ -2,10 +2,11 @@ package com.example.mylawyer.clientpackage;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mylawyer.R;
 import com.example.mylawyer.interfaces.ClientCases;
 import com.example.mylawyer.model.Case;
@@ -15,7 +16,7 @@ public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     private final ClientCases clientcases;
     private TextView LawyerName, LawyerPhone,LawyerEmail,CaseDesc,startDate;
-    private ImageView call,message,email;
+    //private ImageView call,message,email;
     private Button seehistory;
 
     public ClientCaseRecyclerViewHolder(@NonNull View itemView, ClientCases clientCases) {
@@ -30,9 +31,9 @@ public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
         CaseDesc = itemView.findViewById(R.id.LawyerCaseAbout);
         startDate = itemView.findViewById(R.id.CaseStartDate);
 
-        call = itemView.findViewById(R.id.callLawyerButton);
-        message = itemView.findViewById(R.id.messageLawyerButton);
-        email = itemView.findViewById(R.id.emailLawyerButton);
+//        call = itemView.findViewById(R.id.callLawyerButton);
+//        message = itemView.findViewById(R.id.messageLawyerButton);
+//        email = itemView.findViewById(R.id.emailLawyerButton);
 
         seehistory = itemView.findViewById(R.id.seeHistorybutton);
 
@@ -47,32 +48,32 @@ public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
         CaseDesc.setText(clientCaseList.caseDescription);
         startDate.setText(Utils.convertMillisToDateString(clientCaseList.startTime.getSeconds()*1000));
 
-        call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                 clientcases.callLawyer(clientCaseList.lawyerId);
-
-            }
-        });
-
-        message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                clientcases.messageLawyer(clientCaseList.lawyerId);
-
-            }
-        });
-
-        email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                clientcases.emailLawyer(clientCaseList.lawyerEmail);
-
-            }
-        });
+//        call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                 clientcases.callLawyer(clientCaseList.lawyerId);
+//
+//            }
+//        });
+//
+//        message.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                clientcases.messageLawyer(clientCaseList.lawyerId);
+//
+//            }
+//        });
+//
+//        email.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                clientcases.emailLawyer(clientCaseList.lawyerEmail);
+//
+//            }
+//        });
 
         seehistory.setOnClickListener(new View.OnClickListener() {
             @Override
