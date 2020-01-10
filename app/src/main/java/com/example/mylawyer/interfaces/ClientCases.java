@@ -8,5 +8,6 @@ public interface ClientCases {
 
     void emailLawyer(String lawyerEmail);
 
+    void openCaseHistory(String caseID);
 
 }

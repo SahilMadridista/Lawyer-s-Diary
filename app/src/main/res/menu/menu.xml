@@ -7,11 +7,6 @@
         app:showAsAction="never"
         android:icon="@drawable/notification_icon"/>
 
-    <item android:id="@+id/share_unique_id"
-        android:icon="@drawable/share_icon"
-        android:title="Share Unique ID"
-        app:showAsAction="never"/>
-
     <item android:id="@+id/add_staff_member"
         android:icon="@drawable/add_icon"
         android:title="Add Staff Member"
@@ -24,7 +19,7 @@
 
     <item android:id="@+id/add_client"
         android:icon="@drawable/add_icon"
-        android:title="Add Client"
+        android:title="Add New Case"
         app:showAsAction="never"/>
 
     <item android:id="@+id/sign_out"

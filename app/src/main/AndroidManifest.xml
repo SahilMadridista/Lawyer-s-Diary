@@ -11,8 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CourtScenes"
             android:parentActivityName=".LawyerProfileActivity"></activity>
-        <activity android:name=".CaseHistory"
-            android:parentActivityName=".LawyerProfileActivity"></activity>
+        <activity android:name=".CaseHistory"></activity>
+
         <activity android:name=".Clienthomepage" />
         <activity
             android:name=".Clientotpverification"

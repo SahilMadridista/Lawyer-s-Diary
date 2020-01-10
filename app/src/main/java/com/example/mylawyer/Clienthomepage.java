@@ -1,5 +1,6 @@
 package com.example.mylawyer;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
     ClientCaseRecyclerViewAdapter adapter;
     ArrayList<Case> clientCasesList;
     private ArrayList<Case> cases;
+    ProgressDialog progressDialogClientHomepage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +50,14 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
         TextView nameText = (TextView)findViewById(R.id.nameText);
         chptoolbar = findViewById(R.id.client_homepage_toolbar);
         setSupportActionBar(chptoolbar);
-        getSupportActionBar().setTitle("Your Cases");
-        //ArrayList<Case> casesList = new ArrayList<>();
+        getSupportActionBar().setTitle("Lawyer's Diary");
+        progressDialogClientHomepage = new ProgressDialog(this);
+        progressDialogClientHomepage.setTitle("Searching for lawyer");
+        progressDialogClientHomepage.setMessage("It will take a moment");
+        progressDialogClientHomepage.setCancelable(false);
 
-        final RecyclerView recyclerView = (RecyclerView)findViewById(R.id.client_homepage_recyclerview);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.client_homepage_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
         name = getSharedPreferences("MyPref",MODE_PRIVATE).getString("Name","");
 
@@ -61,6 +65,16 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
 
         nameText.setText(name);
         phoneText.setText(phonewithoutISD);
+
+        progressDialogClientHomepage.show();
+
+        showClientCases();
+
+        progressDialogClientHomepage.cancel();
+
+    }
+
+    private void showClientCases() {
 
         firestore.collection("Cases").whereEqualTo("clientId",phonewithoutISD).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -78,35 +92,38 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
                                 casesIdList.size() + " cases", Toast.LENGTH_SHORT).show();
                         Log.v("Client cases", casesIdList.toString());
 
+                        if(casesIdList.isEmpty()){
+                            Toast.makeText(Clienthomepage.this,"You are not a client of any lawyer",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
 
                         cases = new ArrayList<>();
 
+                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.client_homepage_recyclerview);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(Clienthomepage.this));
+
                         adapter = new ClientCaseRecyclerViewAdapter(Clienthomepage.this,
                                 cases,Clienthomepage.this);
+                        recyclerView.setAdapter(adapter);
 
-                        for(int i=0;i<casesIdList.size();i++){
-
-
-
-                            cases.add(casesIdList.get(i));             //Error waali line
-
-                            firestore.collection("Cases").document(cases.get(i)).get()            //Error Line
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        for (String caseId : casesIdList) {
+                            firestore.collection("Cases").document(caseId).get().addOnSuccessListener(
+                                    new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                                            recyclerView.setAdapter(adapter);
-
+                                            synchronized (cases) {
+                                                cases.add(documentSnapshot.toObject(Case.class));
+                                                adapter.notifyItemInserted(cases.size()-1);
+                                            }
                                         }
-                                    });
-
+                                    }
+                            );
                         }
-
                     }
                 });
 
     }
-
 
 
     @Override
@@ -168,6 +185,15 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
 
         //Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",))
 
+
+    }
+
+    @Override
+    public void openCaseHistory(String caseID) {
+
+        Intent seeDetailsintent = new Intent(Clienthomepage.this,CaseHistory.class);
+        seeDetailsintent.putExtra("Case ID",caseID);
+        startActivity(seeDetailsintent);
 
     }
 

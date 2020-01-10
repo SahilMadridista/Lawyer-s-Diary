@@ -41,7 +41,6 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
     FirebaseAuth mAuth;
     TextView profile_name,profile_email,profile_phone;
     private FirebaseDatabase mFirebaseDatabase;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog LawyerProfileActivityProgressDialog;
     private DatabaseReference myref;
     private String userID;
@@ -62,7 +61,6 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
 
         mAuth = FirebaseAuth.getInstance();
-        myref = mFirebaseDatabase.getInstance().getReference();
         profile_name = (TextView)findViewById(R.id.profile_name);
         profile_email = (TextView)findViewById(R.id.profile_email);
         profile_phone = (TextView)findViewById(R.id.profile_phone);
@@ -77,6 +75,9 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
         lawyer_profile_toolbar = findViewById(R.id.lawyer_profile_toolbar);
         setSupportActionBar(lawyer_profile_toolbar);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         // ProgressDialog stuff start
 
@@ -236,16 +237,6 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
             case R.id.refresh:
                 showData();
                 //Toast.makeText(LawyerProfileActivity.this,"Notification Activity to be added if needed",Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.share_unique_id:
-                Intent myIntent = new Intent(Intent.ACTION_SEND);
-                myIntent.setType("text/plain");
-                String shareBody = "Unique ID of your Lawyer "+profile_name.getText().toString()+" is : " + userID;
-                String shareSub = "Use this ID connect to your Lawyer";
-                myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
-                myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
-                startActivity(Intent.createChooser(myIntent,"Share via"));
                 break;
 
             case R.id.add_staff_member:

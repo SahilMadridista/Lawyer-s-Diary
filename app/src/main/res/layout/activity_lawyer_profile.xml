@@ -20,108 +20,209 @@
 
 
 
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/lawyer_profile_toolbar"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:id="@+id/name_layout">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:text="Name: "-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:id="@+id/name_text"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:id="@+id/profile_name"-->
+<!--            android:layout_toRightOf="@id/name_text"/>-->
+
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/name_layout"-->
+<!--        android:id="@+id/email_layout"-->
+<!--        android:layout_centerHorizontal="true">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:text="Email: "-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:id="@+id/email_text"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:id="@+id/profile_email"-->
+<!--            android:layout_toRightOf="@id/email_text" />-->
+
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/email_layout"-->
+<!--        android:id="@+id/phone_layout"-->
+<!--        android:layout_centerHorizontal="true">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:text="Phone: "-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:id="@+id/phone_text"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:id="@+id/profile_phone"-->
+<!--            android:layout_toRightOf="@id/phone_text"/>-->
+
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/phone_layout"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/edittext_background">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="25sp"-->
+<!--            android:text="Your Clients"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:id="@+id/clients_text"-->
+<!--            android:background="@color/colorPrimaryDark"/>-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_below="@id/clients_text"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:id="@+id/client_info_recycler_view">-->
+
+<!--        </androidx.recyclerview.widget.RecyclerView>-->
+
+<!--    </RelativeLayout>-->
+
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lawyer_profile_toolbar"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/name_layout">
+        android:id="@+id/layout"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@id/lawyer_profile_toolbar">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Name: "
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:text="Name : "
+            android:textColor="@color/white"
             android:id="@+id/name_text"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/white"
             android:id="@+id/profile_name"
+            android:text="Sahil Singh"
+            android:layout_marginTop="@dimen/_7sdp"
             android:layout_toRightOf="@id/name_text"/>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name_layout"
-        android:id="@+id/email_layout"
-        android:layout_centerHorizontal="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Email: "
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_15sdp"
+            android:text="Email : "
+            android:layout_below="@id/profile_name"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textColor="@color/white"
             android:id="@+id/email_text"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_15sdp"
+            android:text="Email Address"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textColor="@color/white"
             android:id="@+id/profile_email"
+            android:layout_below="@id/profile_name"
             android:layout_toRightOf="@id/email_text" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/email_layout"
-        android:id="@+id/phone_layout"
-        android:layout_centerHorizontal="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Phone: "
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_15sdp"
+            android:text="Phone : "
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_below="@id/email_text"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:textColor="@color/white"
             android:id="@+id/phone_text"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_15sdp"
+            android:text="Phone Number"
+            android:textColor="@color/white"
             android:id="@+id/profile_phone"
+            android:layout_below="@id/profile_email"
+            android:layout_marginTop="@dimen/_3sdp"
             android:layout_toRightOf="@id/phone_text"/>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/phone_layout"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_background">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_below="@id/phone_text"
+            android:background="@color/white"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:layout_below="@id/phone_text"
             android:text="Your Clients"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:id="@+id/clients_text"
-            android:background="@color/colorPrimaryDark"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/clients_text"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/client_info_recycler_view">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:textSize="@dimen/_17sdp"
+            android:layout_marginTop="@dimen/_4sdp"/>
 
     </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/client_info_recycler_view">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </RelativeLayout>

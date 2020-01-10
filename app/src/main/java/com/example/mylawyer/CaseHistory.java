@@ -27,7 +27,6 @@ public class CaseHistory extends AppCompatActivity {
 
         toolbar  =findViewById(R.id.case_history_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         caseID = getIntent().getExtras().getString("Case ID");
 
@@ -35,8 +34,6 @@ public class CaseHistory extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CaseHistoryRecyclerViewAdapter(getCaseInformation(caseID));
         recyclerView.setAdapter(adapter);
-
-
 
     }
 

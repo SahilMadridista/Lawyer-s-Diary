@@ -1,21 +1,22 @@
 package com.example.mylawyer.clientpackage;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mylawyer.R;
 import com.example.mylawyer.interfaces.ClientCases;
 import com.example.mylawyer.model.Case;
+import com.example.mylawyer.utils.Utils;
 
 public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     private final ClientCases clientcases;
     private TextView LawyerName, LawyerPhone,LawyerEmail,CaseDesc,startDate;
     private ImageView call,message,email;
+    private Button seehistory;
 
     public ClientCaseRecyclerViewHolder(@NonNull View itemView, ClientCases clientCases) {
 
@@ -33,6 +34,8 @@ public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
         message = itemView.findViewById(R.id.messageLawyerButton);
         email = itemView.findViewById(R.id.emailLawyerButton);
 
+        seehistory = itemView.findViewById(R.id.seeHistorybutton);
+
     }
 
     public void bind(final Case clientCaseList){
@@ -42,7 +45,7 @@ public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
         LawyerPhone.setText(clientCaseList.lawyerId);
         LawyerEmail.setText(clientCaseList.lawyerEmail);
         CaseDesc.setText(clientCaseList.caseDescription);
-        startDate.setText(clientCaseList.startTime.toString());
+        startDate.setText(Utils.convertMillisToDateString(clientCaseList.startTime.getSeconds()*1000));
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +70,15 @@ public class ClientCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
 
                 clientcases.emailLawyer(clientCaseList.lawyerEmail);
+
+            }
+        });
+
+        seehistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                clientcases.openCaseHistory(clientCaseList.caseId);
 
             }
         });
