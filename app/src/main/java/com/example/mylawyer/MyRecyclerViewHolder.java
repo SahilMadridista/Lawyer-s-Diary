@@ -1,7 +1,6 @@
 package com.example.mylawyer;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,6 +25,7 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
         delete_staff_button = itemView.findViewById(R.id.remove_staff_button);
 
     }
+
 
 }
 

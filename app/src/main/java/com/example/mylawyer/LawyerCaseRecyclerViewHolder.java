@@ -35,6 +35,8 @@ public class LawyerCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final Case clientCase) {
+
+
         client_name_text.setText(clientCase.clientName);
         client_case_text.setText(clientCase.caseDescription);
         client_phone_text.setText(clientCase.clientId);
@@ -53,6 +55,13 @@ public class LawyerCaseRecyclerViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 casesModifier.deleteSelectedCase(clientCase.caseId);
+            }
+        });
+
+        see_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                casesModifier.seeCaseHistory(clientCase.caseId);
             }
         });
     }

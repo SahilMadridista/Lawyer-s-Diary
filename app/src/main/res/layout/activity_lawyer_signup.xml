@@ -24,11 +24,10 @@
         android:text="Details of the Lawyer"
         android:layout_below="@id/lawyer_signup_toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:textSize="17dp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:textSize="@dimen/_17sdp"
         android:textColor="@color/colorPrimaryDark"
         android:id="@+id/header_text"/>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -36,24 +35,24 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
         android:id="@+id/laywer_name_layout"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10sdp"
         >
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="@dimen/_13sdp"
             android:inputType="textCapWords"
             android:id="@+id/name_edit_text"
             android:hint="Full Name"
             android:drawableLeft="@drawable/name_icon"
             android:layout_centerHorizontal="true"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"
-            android:paddingRight="10dp"/>
+            android:paddingLeft="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,24 +62,24 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_name_layout"
         android:id="@+id/laywer_phone_layout"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="@dimen/_10sdp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="@dimen/_13sdp"
             android:inputType="phone"
             android:id="@+id/phone_edit_text"
             android:hint="Phone Number"
             android:drawableLeft="@drawable/phone_icon"
             android:layout_below="@id/laywer_name_layout"
             android:layout_centerHorizontal="true"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"/>
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_10sdp"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -91,24 +90,24 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_phone_layout"
         android:id="@+id/laywer_email_layout"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="@dimen/_13sdp"
             android:inputType="textEmailAddress"
             android:hint="Email address"
             android:id="@+id/email_edit_text"
             android:drawableLeft="@drawable/email_icon"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_centerHorizontal="true"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"/>
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_10sdp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,23 +118,23 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_email_layout"
         android:id="@+id/laywer_password_layout"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="@dimen/_13sdp"
             android:inputType="textPassword"
             android:hint="Password"
             android:id="@+id/password_edit_text"
-            android:paddingRight="10dp"
+            android:paddingRight="@dimen/_10sdp"
             android:drawableLeft="@drawable/password_icon"
             android:layout_centerHorizontal="true"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"/>
+            android:paddingLeft="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_10sdp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,9 +144,9 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/laywer_password_layout"
         android:id="@+id/lawyer_aadhar_number_layout"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_13sdp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
@@ -157,12 +156,12 @@
             android:id="@+id/lawyer_aadhar"
             android:hint="Aadhar Number"
             android:drawableLeft="@drawable/aadhar_icon"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_centerHorizontal="true"
-            android:paddingRight="10dp"
-            android:textSize="13sp"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"/>
+            android:paddingRight="@dimen/_10sdp"
+            android:textSize="@dimen/_13sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_10sdp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,7 +175,7 @@
         android:textStyle="bold"
         android:id="@+id/registercheckbox"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:textColor="@color/colorPrimaryDark"/>
 
     <RelativeLayout
@@ -193,7 +192,7 @@
             android:layout_centerInParent="true"
             android:textStyle="bold"
             android:id="@+id/login_text"
-            android:textSize="17sp"/>
+            android:textSize="@dimen/_17sdp"/>
 
 
     </RelativeLayout>
@@ -203,15 +202,13 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_background_no_round"
         android:text="Sign Up"
         android:id="@+id/sign_up_button"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="17sp"/>
-
-
+        android:textSize="@dimen/_17sdp"/>
 
 </RelativeLayout>

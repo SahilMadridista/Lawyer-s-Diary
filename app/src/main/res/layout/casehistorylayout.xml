@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_30sdp"
+    android:layout_marginTop="@dimen/_10sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:id="@+id/idtwo"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="Hearing Date"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/Hearing_Date_Text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Hearing_Date_Text"
+            android:layout_centerHorizontal="true"
+            android:text="Hearing Date"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="23sp"
+            android:id="@+id/Hearing_Date"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:id="@+id/first"
+            android:layout_marginTop="15dp"
+            android:background="@color/gray"
+            android:layout_below="@id/Hearing_Date"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="Assigned Lawyer"
+            android:layout_below="@id/first"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:id="@+id/AssignedLawyerText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AssignedLawyerText"
+            android:layout_centerHorizontal="true"
+            android:text="Name of the Laywer"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="23sp"
+            android:id="@+id/AssignedLawyer"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:id="@+id/second"
+            android:layout_marginTop="15dp"
+            android:background="@color/gray"
+            android:layout_below="@id/AssignedLawyer"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="Court Activity"
+            android:layout_below="@id/second"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:id="@+id/WhatHappenedThere"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/WhatHappenedThere"
+            android:layout_centerHorizontal="true"
+            android:text="Court Activity Text"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="23sp"
+            android:id="@+id/WhatHappenedText"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:id="@+id/third"
+            android:layout_marginTop="15dp"
+            android:background="@color/gray"
+            android:layout_below="@id/WhatHappenedText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="Next Date"
+            android:layout_below="@id/third"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:id="@+id/NextDateHeader"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NextDateHeader"
+            android:layout_centerHorizontal="true"
+            android:text="Court Activity Text"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="23sp"
+            android:id="@+id/NextDateText"
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

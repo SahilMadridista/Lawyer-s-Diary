@@ -11,13 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mylawyer.consts.SharedPrefConstants;
 import com.example.mylawyer.interfaces.CasesModifier;
 import com.example.mylawyer.model.Case;
@@ -33,9 +31,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
 import java.util.ArrayList;
-
 import javax.annotation.Nullable;
 
 public class LawyerProfileActivity extends AppCompatActivity implements CasesModifier {
@@ -162,6 +158,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
 
     @Override
     public void addDetails(String clientName, Timestamp startTime, String caseID) {
+
         Intent adddetailsactivityintent = new Intent(this, CourtScenes.class);
 
         adddetailsactivityintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -170,6 +167,18 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
         adddetailsactivityintent.putExtra("CaseID",caseID);
 
         startActivity(adddetailsactivityintent);
+
+    }
+
+    @Override
+    public void seeCaseHistory(String caseId){
+
+        Intent seeDetailsIntent = new Intent(this,CaseHistory.class);
+
+        seeDetailsIntent.putExtra("Case ID",caseId);
+
+        startActivity(seeDetailsIntent);
+
 
     }
 
@@ -262,9 +271,9 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("login", SharedPrefConstants.NO_LOGIN);
                 editor.apply();
-
-                startActivity(new Intent(LawyerProfileActivity.this,MainActivity.class));
                 finish();
+                startActivity(new Intent(LawyerProfileActivity.this,MainActivity.class));
+
 
         }
 

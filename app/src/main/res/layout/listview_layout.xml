@@ -5,20 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="20dp"
-    android:layout_marginBottom="10dp">
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp">
+        android:background="@color/white"
+        android:layout_margin="2dp">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name :"
-            android:textSize="20sp"
+            android:text="Name"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/_13sdp"
             android:id="@+id/name_header"
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"/>
@@ -26,83 +28,106 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:textSize="20sp"
-            android:layout_toRightOf="@id/name_header"
-            android:textColor="@color/black"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/name_header"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Name of Member"
             android:id="@+id/staff_name_text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_below="@id/staff_name_text"
+            android:layout_marginTop="10dp"
+            android:id="@+id/first"
+            android:background="@color/gray"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Post :"
-            android:layout_marginTop="5dp"
+            android:textSize="@dimen/_13sdp"
+            android:text="Post"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
-            android:layout_below="@id/name_header"
+            android:layout_below="@id/first"
             android:id="@+id/post_header"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:text="Post of Member"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/post_header"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/staff_post_text"
-            android:textSize="18sp"
-            android:layout_below="@id/staff_name_text"
+            android:textSize="20sp"
+            android:layout_below="@id/post_header"
             />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_below="@id/staff_post_text"
+            android:layout_marginTop="10dp"
+            android:id="@+id/second"
+            android:background="@color/gray"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/phone_header"
-            android:text="Phone :"
-            android:textSize="17sp"
-            android:layout_marginTop="5dp"
+            android:text="Phone"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:layout_below="@id/post_header"
+            android:layout_below="@id/second"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/staff_post_text"
+            android:layout_below="@id/phone_header"
             android:text="Phone Number"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/phone_header"
             android:id="@+id/staff_phone_text"
-            android:layout_marginLeft="5dp"
-            android:textSize="17sp"
-            android:textColor="@color/black"/>
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_below="@id/staff_phone_text"
+            android:layout_marginTop="10dp"
+            android:id="@+id/third"
+            android:background="@color/gray"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/aadhar_header"
-            android:text="Aadhar :"
-            android:layout_marginTop="5dp"
+            android:text="Aadhar Number"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_below="@id/phone_header"
+            android:textSize="@dimen/_13sdp"
+            android:layout_below="@id/third"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_marginTop="5dp"
             android:id="@+id/staff_aadhar_text"
             android:text="Aadhar Number"
-            android:textColor="@color/black"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/aadhar_header"
-            android:layout_below="@id/staff_phone_text"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/aadhar_header"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -110,7 +135,7 @@
             android:src="@drawable/delete_icon"
             android:background="@color/white"
             android:id="@+id/remove_staff_button"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"/>
 

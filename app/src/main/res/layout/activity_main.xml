@@ -9,23 +9,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layout_background"
+        android:layout_height="@dimen/_350sdp"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/id"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="60dp"
-        android:layout_above="@id/client_continue_button">
+        android:layout_alignParentTop="true">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@drawable/lawyer"
             android:layout_centerInParent="true"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="@dimen/_20sdp"
             android:layout_alignParentBottom="true"
             android:text="Welcome to Lawyer's Diary"
             android:textColor="@color/white"
@@ -33,6 +31,7 @@
             android:layout_marginBottom="20dp"/>
 
     </RelativeLayout>
+
 
     <Button
         android:layout_width="300dp"

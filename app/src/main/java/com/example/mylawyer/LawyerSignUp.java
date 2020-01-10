@@ -40,10 +40,6 @@ public class LawyerSignUp extends AppCompatActivity {
     private ProgressDialog progressDialog;
     FirebaseFirestore firestore;
     String LawyeruserID;
-//    ArrayList<Integer> clientid = new ArrayList<>();
-//    static int n;
-//    private static final int PICK_IMAGE=1;
-//    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

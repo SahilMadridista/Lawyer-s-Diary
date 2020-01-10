@@ -18,32 +18,82 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textColor="@color/black"
-        android:id="@+id/nameText"/>
+        android:orientation="horizontal"
+        android:id="@+id/namephonelayout"
+        android:layout_below="@id/client_homepage_toolbar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone Number"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:textColor="@color/black"
-        android:id="@+id/phoneText"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_background"
+            android:paddingBottom="@dimen/_10sdp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/button_background_no_round"
-        android:text="Sign Out"
-        android:textColor="@color/white"
-        android:id="@+id/sign_out_button"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Name"
+                android:id="@+id/nameHeading"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_4sdp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Sahil Singh"
+                android:textSize="@dimen/_20sdp"
+                android:layout_below="@id/nameHeading"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/nameText"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                android:id="@+id/phoneHeading"
+                android:layout_marginTop="@dimen/_4sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8419065279"
+                android:textSize="@dimen/_19sdp"
+                android:layout_below="@id/phoneHeading"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/phoneText"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/client_homepage_recyclerview"
+        android:layout_below="@id/namephonelayout">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

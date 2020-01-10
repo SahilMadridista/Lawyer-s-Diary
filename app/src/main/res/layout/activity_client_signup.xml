@@ -24,21 +24,24 @@
         android:layout_below="@id/client_signup_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:textSize="17dp"
+        android:textSize="@dimen/_17sdp"
         android:id="@+id/header_text"
         android:textColor="@color/colorPrimaryDark"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/client_name_layout"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
-            android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textCapWords"
             android:id="@+id/client_name_edit_text"
             android:hint="Enter full Name"
@@ -53,16 +56,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/client_phone_layout"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/client_name_layout">
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
+        android:layout_below="@id/client_name_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
             android:id="@+id/client_phone_edit_text"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/phone_icon"
             android:drawablePadding="10dp"
             android:textSize="13sp"
@@ -74,15 +81,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:layout_width="300dp"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_marginRight="@dimen/_13sdp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/client_phone_layout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:background="@drawable/button_background_no_round"
         android:textColor="@color/white"
         android:id="@+id/verify_client_buton"
-        android:text="Check for Lawyer"
+        android:text="Confirm"
         android:textAllCaps="false"/>
 
 </RelativeLayout>

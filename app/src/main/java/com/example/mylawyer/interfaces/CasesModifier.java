@@ -1,6 +1,5 @@
 package com.example.mylawyer.interfaces;
 
-
 import com.google.firebase.Timestamp;
 
 public interface CasesModifier {
@@ -9,4 +8,5 @@ public interface CasesModifier {
 
     void deleteSelectedCase(String caseId);
 
+    void seeCaseHistory(String caseId);
 }

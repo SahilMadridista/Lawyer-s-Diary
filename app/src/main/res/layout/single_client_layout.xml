@@ -3,16 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content"
-    android:elevation="20dp">
+    android:elevation="20dp"
+    android:padding="@dimen/_3sdp"
+    android:background="@color/colorPrimaryDark">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+
         android:layout_centerInParent="true">
-<!--        android:backgroundTint="#88FFFFFF"-->
 
 
         <TextView

@@ -1,16 +1,18 @@
 package com.example.mylawyer;
 
-import android.app.ProgressDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHolder> {
@@ -58,7 +60,41 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHo
 
     }
 
-    private void deleteSelectedstaffRow(int position) {
+    private void deleteSelectedstaffRow(final int position) {
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(staffInformation.getBaseContext());
+//        builder.setMessage("Do you really want to remove this member ?")
+//                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                firestore.collection("Lawyers").document(UID).collection("Staff Members")
+//                        .document(staffmembersArrayList.get(position).getUserID())
+//                        .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//
+//                        Toast.makeText(staffInformation.getBaseContext(),"Deleted Successfully",Toast.LENGTH_SHORT).show();
+//                        staffInformation.showStaffData();
+//
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                        Toast.makeText(staffInformation.getBaseContext(),"Can't be deleted", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                });
+//
+//            }
+//        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.cancel();
+//            }
+//        });
+//        builder.show();
 
         firestore.collection("Lawyers").document(UID).collection("Staff Members")
                 .document(staffmembersArrayList.get(position).getUserID())
@@ -74,7 +110,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHo
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(staffInformation.getBaseContext(),"Can't be deleted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(staffInformation.getBaseContext(),"Can't be deleted", Toast.LENGTH_SHORT).show();
 
             }
         });
