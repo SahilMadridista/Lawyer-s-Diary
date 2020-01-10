@@ -88,17 +88,17 @@ public class Clienthomepage extends AppCompatActivity implements ClientCases {
 
 
 
-                            cases.add(casesIdList.get(i));
-
-                            firestore.collection("Cases").document(cases.get(i)).get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                                            recyclerView.setAdapter(adapter);
-
-                                        }
-                                    });
+//                            cases.add(casesIdList.get(i));
+//
+//                            firestore.collection("Cases").document(cases.get(i)).get()
+//                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                        @Override
+//                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+//                                            recyclerView.setAdapter(adapter);
+//
+//                                        }
+//                                    });
 
                         }
 
