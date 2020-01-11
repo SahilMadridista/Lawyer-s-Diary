@@ -148,6 +148,8 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
                         LawyerProfileActivity.this, casesInformationList, LawyerProfileActivity.this);
                 clientInfoRecyclerView.setAdapter(adapter);
 
+                pd.dismiss();
+
                 for (String caseId : lawyer.clientsCasesList) {
                     firestore.collection("Cases").document(caseId).get().addOnSuccessListener(
                             new OnSuccessListener<DocumentSnapshot>() {
@@ -156,12 +158,13 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
                                     synchronized (casesInformationList) {
                                         casesInformationList.add(documentSnapshot.toObject(Case.class));
                                         adapter.notifyItemInserted(casesInformationList.size()-1);
-                                        pd.dismiss();
+
                                     }
                                 }
                             }
                     );
                 }
+
             }
         });
 
@@ -289,7 +292,7 @@ public class LawyerProfileActivity extends AppCompatActivity implements CasesMod
                         Log.v("Client cases", casesIdList.toString());
 
                         if(casesIdList.isEmpty()) {
-                            Toast.makeText(LawyerProfileActivity.this, "You are not a client of any lawyer",
+                            Toast.makeText(LawyerProfileActivity.this, "You don't have any case",
                                     Toast.LENGTH_SHORT).show();
 
                         }

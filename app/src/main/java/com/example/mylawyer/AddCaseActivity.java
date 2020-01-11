@@ -170,11 +170,18 @@ public class AddCaseActivity extends AppCompatActivity implements DatePickerDial
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         progressDialog.cancel();
-                                        Toast.makeText(AddCaseActivity.this,"Stored in lawyer list",Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(AddCaseActivity.this,"Stored in lawyer list",Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
-                        Toast.makeText(AddCaseActivity.this,"Stored the data",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddCaseActivity.this,"Case added successfully",Toast.LENGTH_SHORT).show();
+
+                        case_about.setText(null);
+                        client_phone.setText(null);
+                        client_aadhar.setText(null);
+                        date_text.setText(null);
+                        client_name.setText(null);
+
 
                     }
                 });

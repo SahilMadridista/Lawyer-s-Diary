@@ -162,8 +162,7 @@
                                 android:hint="Day"
                                 android:id="@+id/HearingDateDay"
                                 android:inputType="number"
-                                android:paddingLeft="10dp"
-                                android:padding="10dp"/>
+                                android:paddingLeft="10dp"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
